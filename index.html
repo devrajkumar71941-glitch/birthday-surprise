@@ -1103,16 +1103,18 @@ $("musicFile").addEventListener(
     $("musicFileName").textContent =
       e.target.files[0]?.name || "";
   }
-);/* =========================
+);
+  /* =========================
    SUPABASE REST HELPERS
    ========================= */
 
 const headers = {
-  apikey:SUPABASE_ANON_KEY,
-  Authorization:"Bearer "+SUPABASE_ANON_KEY
+  "apikey": SUPABASE_ANON_KEY,
+  "Content-Type": "application/json"
 };
 
-async function uploadFile(file,folder){
+
+async function uploadFile(file, folder){
 
   const safe =
     file.name.replace(
@@ -1131,25 +1133,29 @@ async function uploadFile(file,folder){
     "/storage/v1/object/birthday-media/" +
     path,
     {
-      method:"POST",
-      headers:{
-        ...headers,
+      method: "POST",
+
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
         "Content-Type":
           file.type ||
           "application/octet-stream",
-        "x-upsert":"true"
+        "x-upsert": "true"
       },
-      body:file
+
+      body: file
     }
   );
 
   if(!r.ok){
 
+    const errorText =
+      await r.text();
+
     throw new Error(
       "Storage upload failed: " +
-      await r.text()
+      errorText
     );
-
   }
 
   return (
@@ -1160,38 +1166,84 @@ async function uploadFile(file,folder){
 }
 
 
-async function saveSurprise(payload,id){
+async function saveSurprise(payload, id){
 
   const r = await fetch(
     SUPABASE_URL +
     "/rest/v1/birthday_surprises",
     {
-      method:"POST",
+      method: "POST",
 
-      headers:{
-        ...headers,
-        "Content-Type":"application/json",
-        "Prefer":"return=representation"
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Content-Type":
+          "application/json",
+        "Prefer":
+          "return=representation"
       },
 
-      body:JSON.stringify({
-        id,
-        payload
+      body: JSON.stringify({
+        id: id,
+        payload: payload
       })
     }
   );
 
   if(!r.ok){
 
+    const errorText =
+      await r.text();
+
     throw new Error(
       "Database save failed: " +
-      await r.text()
+      errorText
     );
-
   }
+
+  return await r.json();
 }
 
 
+async function loadSurprise(id){
+
+  const r = await fetch(
+    SUPABASE_URL +
+    "/rest/v1/birthday_surprises?id=eq." +
+    encodeURIComponent(id) +
+    "&select=payload&limit=1",
+    {
+      method: "GET",
+
+      headers: {
+        "apikey":
+          SUPABASE_ANON_KEY
+      }
+    }
+  );
+
+  if(!r.ok){
+
+    const errorText =
+      await r.text();
+
+    throw new Error(
+      "Database read failed: " +
+      errorText
+    );
+  }
+
+  const rows =
+    await r.json();
+
+  if(!rows.length){
+
+    throw new Error(
+      "Surprise not found."
+    );
+  }
+
+  return rows[0].payload;
+}
 async function loadSurprise(id){
 
   const r = await fetch(
@@ -1219,8 +1271,6 @@ async function loadSurprise(id){
 
   return rows[0].payload;
 }
-
-
 /* =========================
    CREATE SURPRISE
    ========================= */
@@ -1244,28 +1294,38 @@ $("createBtn").addEventListener(
       return;
     }
 
-    const btn = $("createBtn");
+
+    const btn =
+      $("createBtn");
 
     btn.disabled = true;
+
 
     setStatus(
       "Creating your surprise... please wait."
     );
 
+
     try{
 
       const memories = [];
 
-      for(let i=1;i<=3;i++){
+
+      /* =====================
+         UPLOAD MEMORIES
+         ===================== */
+
+      for(let i = 1; i <= 3; i++){
 
         const file =
-          $("file"+i).files[0];
+          $("file" + i).files[0];
 
         const url =
-          $("url"+i).value.trim();
+          $("url" + i).value.trim();
 
         const caption =
-          $("caption"+i).value.trim();
+          $("caption" + i).value.trim();
+
 
         if(file){
 
@@ -1275,48 +1335,65 @@ $("createBtn").addEventListener(
             " of 3..."
           );
 
+
+          const imageUrl =
+            await uploadFile(
+              file,
+              "images"
+            );
+
+
           memories.push({
-            image:
-              await uploadFile(
-                file,
-                "images"
-              ),
-            caption
+            image: imageUrl,
+            caption: caption
           });
+
 
         }else if(url){
 
           memories.push({
-            image:url,
-            caption
+            image: url,
+            caption: caption
           });
 
         }
-
       }
+
+
+      /* =====================
+         MUSIC
+         ===================== */
 
       let music =
         $("musicUrl").value.trim();
 
-      const mf =
+
+      const musicFile =
         $("musicFile").files[0];
 
-      if(mf){
+
+      if(musicFile){
 
         setStatus(
           "Uploading music..."
         );
 
+
         music =
           await uploadFile(
-            mf,
+            musicFile,
             "music"
           );
       }
 
+
+      /* =====================
+         PAYLOAD
+         ===================== */
+
       const payload = {
 
-        name,
+        name: name,
 
         sender:
           $("sender").value.trim(),
@@ -1328,51 +1405,81 @@ $("createBtn").addEventListener(
           $("finalMessage").value.trim() ||
           "Wishing you a beautiful birthday filled with happiness, love and wonderful memories. ❤️",
 
-        memories,
+        memories: memories,
 
-        music
-
+        music: music
       };
+
+
+      /* =====================
+         CREATE UNIQUE ID
+         ===================== */
 
       const id =
         crypto.randomUUID();
 
+
       setStatus(
         "Saving your surprise..."
       );
+
+
+      /* =====================
+         SAVE TO SUPABASE
+         ===================== */
 
       await saveSurprise(
         payload,
         id
       );
 
+
+      /* =====================
+         GENERATE SHARE LINK
+         ===================== */
+
       const link =
-        location.origin +
-        location.pathname +
-        "?id=" +
-        id;
+        new URL(
+          location.href
+        );
+
+      link.search = "";
+
+      link.searchParams.set(
+        "id",
+        id
+      );
+
 
       $("shareLink").value =
-        link;
+        link.href;
+
 
       $("shareBox")
         .classList
         .remove("hidden");
+
 
       setStatus(
         "Done! Your shareable birthday link is ready.",
         "success"
       );
 
+
     }catch(err){
 
-      console.error(err);
+      console.error(
+        "CREATE ERROR:",
+        err
+      );
+
 
       setStatus(
         err.message ||
-        "Something went wrong. Check Supabase table/storage permissions.",
+        "Something went wrong. Please check Supabase.",
         "error"
       );
+
 
     }finally{
 
@@ -1382,52 +1489,6 @@ $("createBtn").addEventListener(
 
   }
 );
-
-
-/* =========================
-   SHARE BUTTONS
-   ========================= */
-
-$("copyLinkBtn").addEventListener(
-  "click",
-  async () => {
-
-    try{
-
-      await navigator.clipboard.writeText(
-        $("shareLink").value
-      );
-
-      setStatus(
-        "Link copied! Send it to the birthday person.",
-        "success"
-      );
-
-    }catch{
-
-      $("shareLink").select();
-
-      document.execCommand("copy");
-
-      setStatus(
-        "Link copied!",
-        "success"
-      );
-
-    }
-
-  }
-);
-
-
-$("openLinkBtn").addEventListener(
-  "click",
-  () => {
-    location.href =
-      $("shareLink").value;
-  }
-);
-
 
 /* =========================
    LOAD SHARED SURPRISE
