@@ -86,4 +86,5 @@ $('finalBtn').onclick=()=>{show('finalScreen');typeText(data.finalMessage,$('fin
 function celebrate(){for(let i=0;i<20;i++)setTimeout(()=>{let f=document.createElement('div');f.className='firework';f.style.left=(10+Math.random()*80)+'vw';f.style.top=(15+Math.random()*55)+'vh';document.body.appendChild(f);setTimeout(()=>f.remove(),1600)},i*70);for(let i=0;i<45;i++)setTimeout(()=>{let c=document.createElement('div');c.className='confetti';c.textContent=['✨','💖','🎉','🎊','⭐','💛'][Math.floor(Math.random()*6)];c.style.left=Math.random()*100+'vw';document.body.appendChild(c);setTimeout(()=>c.remove(),4500)},i*35)}
 loadSharedSurprise();
 $('restartBtn').onclick=()=>{if(musicObjectUrl)URL.revokeObjectURL(musicObjectUrl);musicObjectUrl='';$('music').pause();$('music').removeAttribute('src');$('musicBtn').textContent='🎵 Music OFF';$('musicBtn').classList.remove('playing');show('setup')};
-</script></body></html> 
+alert("JAVASCRIPT WORKING");
+</script></body></html>
