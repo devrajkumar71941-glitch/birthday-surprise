@@ -1,36 +1,523 @@
-<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Birthday Magic ✨</title><style>
-body{margin:0;background:#090313;color:white;font:16px Arial;text-align:center;padding:25px}main{max-width:600px;margin:auto;background:#180820;padding:25px;border-radius:25px}input,textarea,button{width:100%;box-sizing:border-box;margin:8px 0;padding:14px;border-radius:15px;border:1px solid #765;color:white;background:#090313}button{background:linear-gradient(90deg,#ff9f1c,#ff4f9a);font-weight:bold}img{max-width:100%;border-radius:18px}h1{color:#ffd36a}#app{display:none}
-</style></head><body><main><div id="form"><h1>🎂 Birthday Magic</h1><input id="n" placeholder="Birthday Person"><input id="s" placeholder="Your Name"><input id="r" placeholder="Relation"><textarea id="m" placeholder="Birthday Message"></textarea><input id="p1" type="file" accept="image/*"><input id="p2" type="file" accept="image/*"><input id="p3" type="file" accept="image/*"><button onclick="create()">✨ CREATE SURPRISE</button><p id="st"></p></div><div id="app"><h1>🎂 Happy Birthday <span id="nm"></span> ❤️</h1><img id="pic"><p id="tx"></p><button onclick="next()">Next ❤️</button></div></main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Birthday Magic 🎂</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;min-height:100vh;color:#fff;
+font-family:Arial,sans-serif;
+background:linear-gradient(145deg,#08030f,#210728,#05020a);
+padding:25px 12px
+}
+.card{
+max-width:650px;margin:auto;padding:25px 18px;
+background:#170820;border:1px solid #5b285f;
+border-radius:25px;box-shadow:0 20px 60px #0008
+}
+h1{text-align:center;color:#ffd36a;font-size:38px}
+h2{color:#ffd36a}
+label{display:block;margin:16px 0 7px;font-weight:bold}
+input,textarea{
+width:100%;padding:15px;border-radius:15px;
+border:1px solid #70476e;background:#08030f;
+color:white;font-size:16px;outline:none
+}
+textarea{min-height:100px;resize:vertical}
+input:focus,textarea:focus{border-color:#ff4f9a}
+.photo{
+margin-top:15px;padding:15px;border:1px solid #4c2852;
+border-radius:18px;background:#0d0512
+}
+button{
+border:0;border-radius:15px;padding:15px 20px;
+font-size:17px;font-weight:bold;cursor:pointer
+}
+.create{
+width:100%;margin-top:25px;
+background:linear-gradient(90deg,#ff9f1c,#ff4f9a);color:white
+}
+.secondary{background:#302035;color:white}
+#status{text-align:center;margin:18px 0;color:#ffd36a}
+#share{display:none;margin-top:20px}
+#link{
+font-size:12px;word-break:break-all;
+background:#050208
+}
+.screen{display:none}
+.active{display:block}
+.center{text-align:center}
+.hero{padding-top:60px}
+.big{font-size:40px;color:#ffd36a}
+.name{color:#ff78b8}
+.memory img{
+display:block;width:100%;max-height:65vh;
+object-fit:contain;border-radius:18px;margin:20px 0
+}
+.caption{
+font-size:18px;line-height:1.7;text-align:center;color:#eadbea
+}
+.nav{display:flex;gap:10px;margin-top:20px}
+.nav button{flex:1}
+.final{
+text-align:center;padding:20px
+}
+.final img{
+width:100%;margin:8px 0;border-radius:16px
+}
+.hidden{display:none}
+.small{color:#b9a8bd;font-size:13px;line-height:1.5}
+</style>
+</head>
+
+<body>
+
+<div id="setup" class="screen active">
+<div class="card">
+
+<h1>🎂 Birthday Magic</h1>
+
+<label>Birthday Person</label>
+<input id="name" placeholder="e.g. Megha">
+
+<label>Your Name</label>
+<input id="sender" placeholder="e.g. Devraj">
+
+<label>Relation</label>
+<input id="relation" placeholder="e.g. Friend">
+
+<label>Birthday Message</label>
+<textarea id="message"
+placeholder="Write your special birthday message..."></textarea>
+
+<div class="photo">
+<h2>📸 Memory 1</h2>
+<input id="p1" type="file" accept="image/*">
+<textarea id="c1" placeholder="Memory message (optional)"></textarea>
+</div>
+
+<div class="photo">
+<h2>📸 Memory 2</h2>
+<input id="p2" type="file" accept="image/*">
+<textarea id="c2" placeholder="Memory message (optional)"></textarea>
+</div>
+
+<div class="photo">
+<h2>📸 Memory 3</h2>
+<input id="p3" type="file" accept="image/*">
+<textarea id="c3" placeholder="Memory message (optional)"></textarea>
+</div>
+
+<button id="create" class="create">
+✨ CREATE SURPRISE
+</button>
+
+<div id="status"></div>
+
+<div id="share">
+<input id="link" readonly>
+<br><br>
+<button id="copy" class="secondary">📋 COPY LINK</button>
+<button id="open" class="secondary">💖 OPEN</button>
+<p class="small">
+Photos are compressed and stored inside the share link.
+No database or server upload is required.
+</p>
+</div>
+
+</div>
+</div>
+
+
+<div id="opening" class="screen">
+<div class="card center hero">
+
+<h1>💌 A Little Surprise</h1>
+
+<div class="big">
+Happy Birthday
+<span id="oName" class="name"></span> 🎂
+</div>
+
+<p>
+Someone made this little surprise especially for you. ❤️
+</p>
+
+<button id="start" class="create">
+💌 OPEN YOUR SURPRISE
+</button>
+
+</div>
+</div>
+
+
+<div id="intro" class="screen">
+<div class="card center">
+
+<h1>💖 Hello <span id="iName" class="name"></span> ✨</h1>
+
+<p>
+This little journey was made with love just for you.
+</p>
+
+<p>
+From <b id="iSender"></b> ❤️
+</p>
+
+<button id="memStart" class="create">
+📸 START MEMORY JOURNEY
+</button>
+
+</div>
+</div>
+
+
+<div id="memory" class="screen">
+<div class="card memory">
+
+<div class="center">
+<h2 id="count"></h2>
+</div>
+
+<img id="photo">
+
+<div id="caption" class="caption"></div>
+
+<div class="nav">
+<button id="prev" class="secondary">← Previous</button>
+<button id="next" class="create">Next ❤️</button>
+</div>
+
+</div>
+</div>
+
+
+<div id="cake" class="screen">
+<div class="card center hero">
+
+<h1>🎂 Make A Wish</h1>
+
+<div style="font-size:90px">🕯️🎂🕯️</div>
+
+<p>
+One last little surprise is waiting for you. ✨
+</p>
+
+<button id="blow" class="create">
+🕯️ BLOW OUT THE CANDLES
+</button>
+
+</div>
+</div>
+
+
+<div id="final" class="screen">
+<div class="card final">
+
+<h1>🎉 Happy Birthday</h1>
+
+<h2>
+<span id="fName" class="name"></span> ❤️
+</h2>
+
+<p>
+With lots of love from <b id="fSender"></b>
+</p>
+
+<div id="fMessage" class="caption"></div>
+
+<div id="photos"></div>
+
+<button id="again" class="create">
+🎆 CELEBRATE AGAIN
+</button>
+
+</div>
+</div>
+
+
 <script>
-const U="https://mlwfuysdbqzgwfgzqwd.supabase.co",K="sb_publishable_lloRqy5KDRMkrkVBasR_VA_L5BLtqW4";
-let d,i=0;
-async function up(f){
- let x=Date.now()+"-"+f.name.replace(/\W/g,"");
- let q=await fetch(U+"/storage/v1/object/birthday/"+x,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":f.type},body:f});
- if(!q.ok)throw Error(await q.text());
- return U+"/storage/v1/object/public/birthday/"+x;
+
+const $=x=>document.getElementById(x);
+
+let data={
+name:"",
+sender:"",
+relation:"",
+message:"",
+memories:[]
+};
+
+let current=0;
+
+function show(id){
+document.querySelectorAll(".screen")
+.forEach(x=>x.classList.remove("active"));
+$(id).classList.add("active");
+scrollTo(0,0);
 }
+
+function compress(file){
+return new Promise((resolve,reject)=>{
+
+if(!file){resolve("");return}
+
+let r=new FileReader();
+
+r.onload=e=>{
+
+let img=new Image();
+
+img.onload=()=>{
+
+let max=650;
+let scale=Math.min(1,max/Math.max(img.width,img.height));
+
+let c=document.createElement("canvas");
+c.width=Math.round(img.width*scale);
+c.height=Math.round(img.height*scale);
+
+let x=c.getContext("2d");
+x.drawImage(img,0,0,c.width,c.height);
+
+resolve(c.toDataURL("image/jpeg",.5));
+
+};
+
+img.onerror=()=>reject("Image error");
+img.src=e.target.result;
+
+};
+
+r.onerror=()=>reject("File error");
+r.readAsDataURL(file);
+
+});
+}
+
 async function create(){
- try{
-  if(!n.value.trim())return st.textContent="Name required";
-  st.textContent="Uploading...";
-  let a=[];
-  for(let j=1;j<4;j++){let f=document.getElementById("p"+j).files[0];if(f)a.push(await up(f))}
-  let id=crypto.randomUUID(),p={name:n.value,sender:s.value,relation:r.value,message:m.value,photos:a};
-  let q=await fetch(U+"/rest/v1/birthday_surprises",{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},body:JSON.stringify({id,payload:p})});
-  if(!q.ok)throw Error(await q.text());
-  let link=location.origin+location.pathname+"?id="+id;
-  st.innerHTML="DONE ❤️<br><input value='"+link+"' readonly>";
- }catch(e){st.textContent="ERROR: "+e.message}
+
+let name=$("name").value.trim();
+
+if(!name){
+alert("Birthday person's name likho.");
+return;
 }
-async function load(){
- let id=new URLSearchParams(location.search).get("id");if(!id)return;
- let q=await fetch(U+"/rest/v1/birthday_surprises?id=eq."+id+"&select=payload",{headers:{apikey:K}});
- if(!q.ok)return;
- let a=await q.json();if(!a[0])return;
- d=a[0].payload;form.style.display="none";app.style.display="block";show();
+
+$("create").disabled=true;
+$("status").textContent="Creating surprise...";
+
+try{
+
+let memories=[];
+
+for(let i=1;i<=3;i++){
+
+let file=$("p"+i).files[0];
+let caption=$("c"+i).value.trim();
+
+if(file){
+
+$("status").textContent=
+"Preparing Memory "+i+" of 3...";
+
+let image=await compress(file);
+
+memories.push({
+image:image,
+caption:caption
+});
+
 }
-function show(){nm.textContent=d.name;pic.src=d.photos[i]||"";tx.textContent=d.message||"Have a beautiful birthday! ❤️"}
-function next(){if(i<d.photos.length-1){i++;show()}else alert("🎉 Happy Birthday ❤️")}
-load();
-</script></body></html>
+}
+
+data={
+name:name,
+sender:$("sender").value.trim()||"Someone",
+relation:$("relation").value.trim(),
+message:$("message").value.trim()||
+"May your birthday be filled with happiness, love and beautiful memories. ❤️",
+memories:memories
+};
+
+let encoded=
+encodeURIComponent(JSON.stringify(data));
+
+let url=
+location.href.split("#")[0]+"#"+encoded;
+
+$("link").value=url;
+$("share").style.display="block";
+$("status").textContent="✅ Surprise ready!";
+
+}catch(e){
+
+console.error(e);
+$("status").textContent=
+"ERROR: "+(e.message||e);
+
+}
+
+$("create").disabled=false;
+}
+
+$("create").onclick=create;
+
+
+$("copy").onclick=async()=>{
+
+let link=$("link").value;
+
+try{
+await navigator.clipboard.writeText(link);
+$("copy").textContent="✅ COPIED!";
+setTimeout(()=>$("copy").textContent="📋 COPY LINK",1500);
+}catch{
+$("link").select();
+document.execCommand("copy");
+alert("Link copied!");
+}
+
+};
+
+
+$("open").onclick=()=>{
+location.href=$("link").value;
+};
+
+
+function loadLink(){
+
+if(!location.hash)return;
+
+try{
+
+let raw=location.hash.substring(1);
+
+data=JSON.parse(decodeURIComponent(raw));
+
+$("oName").textContent=data.name||"";
+
+show("opening");
+
+}catch(e){
+
+console.error(e);
+
+}
+
+}
+
+
+$("start").onclick=()=>{
+
+$("iName").textContent=data.name||"";
+$("iSender").textContent=data.sender||"Someone";
+
+show("intro");
+
+};
+
+
+$("memStart").onclick=()=>{
+
+current=0;
+renderMemory();
+show("memory");
+
+};
+
+
+function renderMemory(){
+
+let list=data.memories||[];
+
+if(!list.length){
+
+show("cake");
+return;
+
+}
+
+let m=list[current];
+
+$("count").textContent=
+"MEMORY "+(current+1)+" OF "+list.length;
+
+$("photo").src=m.image;
+
+$("caption").textContent=
+m.caption||
+"Every memory becomes more beautiful when remembered. ❤️";
+
+$("prev").style.visibility=
+current===0?"hidden":"visible";
+
+$("next").textContent=
+current===list.length-1?
+"CONTINUE ❤️":
+"NEXT MEMORY ❤️";
+
+}
+
+
+$("prev").onclick=()=>{
+
+if(current>0){
+current--;
+renderMemory();
+}
+
+};
+
+
+$("next").onclick=()=>{
+
+if(current<data.memories.length-1){
+
+current++;
+renderMemory();
+
+}else{
+
+show("cake");
+
+}
+
+};
+
+
+$("blow").onclick=()=>{
+
+show("final");
+
+$("fName").textContent=data.name||"";
+$("fSender").textContent=data.sender||"Someone";
+
+$("fMessage").textContent=
+data.message||"Happy Birthday! ❤️";
+
+$("photos").innerHTML=
+(data.memories||[])
+.map(x=>x.image?
+"<img src='"+x.image+"'>":"")
+.join("");
+
+};
+
+
+$("again").onclick=()=>{
+
+location.hash="";
+location.reload();
+
+};
+
+
+loadLink();
+
+</script>
+</body>
+</html>
