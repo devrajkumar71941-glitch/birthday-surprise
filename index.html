@@ -2,8 +2,15 @@
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#08030f,#25082f);color:#fff;font-family:Arial,sans-serif;min-height:100vh}.box{max-width:650px;margin:30px auto;padding:22px;background:#16091f;border:1px solid #63335f;border-radius:25px}h1{text-align:center;color:#ffd36a}.g{margin:14px 0}label{display:block;margin-bottom:7px;color:#ffddea;font-weight:bold}input,textarea,button{width:100%;padding:14px;border-radius:14px;border:1px solid #654466;background:#08030d;color:#fff;font-size:16px}textarea{min-height:100px}button{background:linear-gradient(90deg,#ff9f1c,#ff4f9a);border:0;font-weight:bold;margin-top:10px}.mem{padding:15px;margin:15px 0;border:1px solid #56345c;border-radius:18px}.mem h2{color:#ffd36a;font-size:20px}.hide{display:none}.pic{width:100%;max-height:430px;object-fit:contain;border-radius:18px;margin:15px 0}.msg{background:#0a0410;padding:18px;border-radius:18px;line-height:1.7;white-space:pre-wrap}.link{font-size:12px}.gold{color:#ffd36a;text-align:center}.nav{display:flex;gap:10px}.nav button{width:50%}</style></head><body>
 <div id="app"></div><script>
 const A=document.getElementById("app");
-const enc=s=>btoa(unescape(encodeURIComponent(JSON.stringify(s))));
-const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s))));
+const enc=s=>btoa(unescape(encodeURIComponent(JSON.stringify(s))))
+  .replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+
+const dec=s=>{
+  s=s.replace(/-/g,"+").replace(/_/g,"/");
+  while(s.length%4)s+="=";
+  return JSON.parse(decodeURIComponent(escape(atob(s))));
+};
+
 function page(x){A.innerHTML=x}
 function setup(){
 page(`<div class="box"><h1>🎂 Birthday Magic</h1>
@@ -38,5 +45,8 @@ let z=D.m[i];page(`<div class="box"><p class="gold">💖 MEMORY ${i+1} OF ${D.m.
 function cake(){page(`<div class="box"><h1>🎂 One Last Surprise ✨</h1><p class="gold">Make a wish, ${D.n}!</p><div style="font-size:100px;text-align:center">🎂</div><button onclick="final()">🕯️ BLOW OUT THE CANDLES</button></div>`)}
 window.final=()=>page(`<div class="box"><h1>🎉 Happy Birthday ${D.n}! ❤️</h1><p class="gold">From ${D.s} • ${D.r}</p><div class="msg">${D.f}</div>${D.m.map(x=>`<img class="pic" src="${x.i}">`).join("")}<button onclick="location.hash='';setup()">🔄 CREATE ANOTHER</button></div>`);
 window.render=render;render()}
-location.hash?open():setup();
+window.addEventListener("load",()=>{
+  if(location.hash && location.hash.length>1) open();
+  else setup();
+});
 </script></body></html>
