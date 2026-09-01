@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08030f">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#08030f"
+>
+
 <title>Birthday Magic ✨</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+ href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+ rel="stylesheet"
+>
 
 <style>
+
+/* ===============================
+   ROOT
+================================ */
+
 :root{
   --bg:#08030f;
   --bg2:#190620;
@@ -21,8 +40,12 @@
   --white:#fff7ff;
   --muted:#b9a8bd;
   --card:rgba(25,8,35,.84);
-  --border:rgba(255,211,106,.20);
 }
+
+
+/* ===============================
+   RESET
+================================ */
 
 *{
   box-sizing:border-box;
@@ -37,13 +60,29 @@ html{
 
 body{
   min-height:100vh;
-  overflow-x:hidden;
   color:var(--white);
   font-family:Poppins,sans-serif;
+  overflow-x:hidden;
+
   background:
-    radial-gradient(circle at 20% 10%,rgba(255,79,154,.14),transparent 30%),
-    radial-gradient(circle at 80% 30%,rgba(255,211,106,.10),transparent 30%),
-    linear-gradient(145deg,var(--bg),var(--bg2) 55%,#05020a);
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(255,79,154,.15),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(255,211,106,.10),
+      transparent 30%
+    ),
+
+    linear-gradient(
+      145deg,
+      var(--bg),
+      var(--bg2) 55%,
+      #05020a
+    );
 }
 
 button,
@@ -56,20 +95,16 @@ button{
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
 
-/* =========================
+/* ===============================
    STARS
-========================= */
+================================ */
 
 #stars{
   position:fixed;
   inset:0;
-  pointer-events:none;
   z-index:0;
+  pointer-events:none;
   overflow:hidden;
 }
 
@@ -77,60 +112,54 @@ button:disabled{
   position:absolute;
   width:3px;
   height:3px;
+  background:white;
   border-radius:50%;
-  background:#fff;
   opacity:.7;
-  animation:twinkle 2.5s ease-in-out infinite;
+
+  animation:
+    twinkle 2.5s ease-in-out infinite;
 }
 
 @keyframes twinkle{
+
   0%,100%{
-    opacity:.2;
+    opacity:.15;
     transform:scale(.7);
   }
+
   50%{
     opacity:1;
     transform:scale(1.5);
   }
+
 }
 
-/* =========================
-   MUSIC
-========================= */
 
-.music{
-  position:fixed;
-  top:14px;
-  right:14px;
-  z-index:3000;
-  padding:10px 15px;
-  border:1px solid rgba(255,211,106,.35);
-  border-radius:999px;
-  background:rgba(10,3,15,.88);
-  color:var(--gold);
-  backdrop-filter:blur(12px);
-}
-
-.music.playing{
-  box-shadow:0 0 25px rgba(255,79,154,.35);
-}
-
-/* =========================
+/* ===============================
    SCREENS
-========================= */
+================================ */
 
 .screen{
   display:none;
+
   min-height:100vh;
+
   position:relative;
-  z-index:1;
-  padding:75px 18px 40px;
+
+  z-index:2;
+
+  padding:
+    75px
+    18px
+    40px;
 }
 
 .screen.active{
   display:flex;
-  align-items:center;
+
   justify-content:center;
+
+  align-items:center;
 }
 
 .container{
@@ -138,96 +167,179 @@ button:disabled{
   margin:auto;
 }
 
-/* =========================
+
+/* ===============================
    CARD
-========================= */
+================================ */
 
 .card{
-  padding:28px;
-  border:1px solid var(--border);
-  border-radius:24px;
+
+  width:100%;
+
   background:var(--card);
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
-  backdrop-filter:blur(14px);
+
+  border:
+    1px solid
+    rgba(255,211,106,.22);
+
+  border-radius:25px;
+
+  padding:28px;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.5);
+
+  backdrop-filter:blur(16px);
+
+  -webkit-backdrop-filter:blur(16px);
+
 }
 
+
+/* ===============================
+   TEXT
+================================ */
+
 .title{
-  margin-bottom:12px;
-  color:var(--gold);
+
   font-family:Cinzel,serif;
+
+  color:var(--gold);
+
   text-align:center;
-  font-size:clamp(30px,8vw,54px);
+
+  font-size:
+    clamp(
+      32px,
+      8vw,
+      55px
+    );
+
   line-height:1.15;
+
+  margin-bottom:14px;
 }
 
 .big-text{
-  margin-bottom:15px;
+
   font-family:Cinzel,serif;
-  text-align:center;
-  font-size:clamp(29px,7vw,48px);
-  line-height:1.2;
-}
 
-.subtitle{
-  margin-bottom:25px;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.7;
-  text-align:center;
-}
-
-.eyebrow{
-  margin-bottom:12px;
   color:var(--gold);
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:2px;
+
+  font-size:
+    clamp(
+      28px,
+      7vw,
+      48px
+    );
+
+  line-height:1.25;
+
+  margin-bottom:15px;
+
   text-align:center;
 }
 
 .name-highlight{
+
   color:var(--pink2);
-  text-shadow:0 0 20px rgba(255,79,154,.45);
+
+  text-shadow:
+    0 0 20px
+    rgba(255,79,154,.45);
 }
 
-/* =========================
+.subtitle{
+
+  color:var(--muted);
+
+  font-size:15px;
+
+  line-height:1.75;
+
+  margin-bottom:25px;
+
+  text-align:center;
+}
+
+.eyebrow{
+
+  color:var(--gold);
+
+  letter-spacing:2px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  text-align:center;
+
+  margin-bottom:13px;
+}
+
+
+/* ===============================
    FORM
-========================= */
+================================ */
 
 .group{
-  margin-bottom:19px;
+  margin-bottom:20px;
 }
 
 .group label{
+
   display:block;
-  margin-bottom:8px;
+
   color:#f4ddea;
+
   font-size:14px;
+
   font-weight:600;
+
+  margin-bottom:8px;
 }
 
 input[type="text"],
 input[type="url"],
 textarea{
+
   width:100%;
+
+  border:
+    1px solid
+    rgba(255,211,106,.18);
+
   outline:none;
-  padding:15px 16px;
-  border:1px solid rgba(255,211,106,.18);
+
+  background:
+    rgba(5,2,10,.78);
+
+  color:white;
+
   border-radius:17px;
-  background:rgba(5,2,10,.75);
-  color:#fff;
-  transition:.2s;
+
+  padding:15px 16px;
+
+  transition:.25s;
 }
 
 textarea{
-  min-height:105px;
+
+  min-height:110px;
+
   resize:vertical;
 }
 
 input:focus,
 textarea:focus{
-  border-color:rgba(255,79,154,.7);
-  box-shadow:0 0 0 3px rgba(255,79,154,.08);
+
+  border-color:
+    rgba(255,79,154,.75);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,79,154,.09);
 }
 
 input::placeholder,
@@ -235,522 +347,943 @@ textarea::placeholder{
   color:#75657b;
 }
 
+
+/* ===============================
+   FILE BOX
+================================ */
+
 .filebox{
-  padding:13px;
-  border:1px dashed rgba(255,211,106,.25);
+
+  background:
+    rgba(5,2,10,.65);
+
+  border:
+    1px dashed
+    rgba(255,211,106,.25);
+
   border-radius:17px;
-  background:rgba(5,2,10,.55);
+
+  padding:13px;
 }
 
 .filebox input{
   width:100%;
   color:#ddd;
+  font-size:13px;
 }
 
 .file-name{
+
   margin-top:7px;
-  color:var(--gold);
+
+  color:var(--pink2);
+
   font-size:12px;
+
   word-break:break-word;
 }
 
 .help{
-  margin-top:7px;
-  color:#8d7d92;
+
+  color:#8e7c94;
+
   font-size:11px;
+
   line-height:1.5;
+
+  margin-top:7px;
 }
 
-/* =========================
+
+/* ===============================
    MEMORY FORM
-========================= */
+================================ */
 
 .memory-card{
+
+  border:
+    1px solid
+    rgba(255,79,154,.16);
+
+  background:
+    rgba(255,79,154,.035);
+
+  border-radius:20px;
+
+  padding:18px;
+
   margin-bottom:18px;
-  padding:17px;
-  border:1px solid rgba(255,79,154,.14);
-  border-radius:19px;
-  background:rgba(10,3,16,.42);
 }
 
 .memory-title{
-  margin-bottom:15px;
-  color:var(--pink2);
+
+  color:var(--gold);
+
   font-weight:700;
+
+  font-size:15px;
+
+  margin-bottom:16px;
 }
 
-/* =========================
+
+/* ===============================
    BUTTONS
-========================= */
+================================ */
 
 .primary,
 .secondary{
-  width:100%;
-  padding:14px 18px;
-  border-radius:16px;
+
+  border:none;
+
+  border-radius:999px;
+
+  padding:
+    13px
+    20px;
+
   font-weight:700;
-  transition:.2s;
+
+  transition:.25s;
+
+  min-height:48px;
 }
 
 .primary{
-  border:1px solid rgba(255,211,106,.35);
-  background:linear-gradient(135deg,#ff4f9a,#ff8b3d);
-  color:white;
-  box-shadow:0 10px 30px rgba(255,79,154,.20);
+
+  color:#21000f;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      #ffb8d8
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(255,79,154,.2);
 }
 
 .primary:hover{
+
   transform:translateY(-2px);
-  box-shadow:0 14px 35px rgba(255,79,154,.30);
+
+  box-shadow:
+    0 15px 35px
+    rgba(255,79,154,.35);
+}
+
+.primary:disabled{
+
+  opacity:.55;
+
+  cursor:not-allowed;
+
+  transform:none;
 }
 
 .secondary{
-  border:1px solid rgba(255,211,106,.25);
-  background:rgba(10,3,15,.7);
+
   color:var(--gold);
+
+  background:
+    rgba(255,255,255,.05);
+
+  border:
+    1px solid
+    rgba(255,211,106,.25);
 }
 
 .secondary:hover{
-  border-color:var(--pink);
-  background:rgba(255,79,154,.08);
+
+  background:
+    rgba(255,211,106,.09);
 }
 
-.share-actions,
-.nav-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-}
 
-.share-actions button,
-.nav-buttons button{
-  flex:1;
-}
-
-/* =========================
+/* ===============================
    STATUS
-========================= */
+================================ */
 
 .status{
+
   min-height:22px;
-  margin-top:15px;
-  color:#c8b9cb;
-  font-size:13px;
+
   text-align:center;
+
+  margin-top:15px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.5;
 }
 
 .status.success{
-  color:#80ffbd;
+  color:#79ffc0;
 }
 
 .status.error{
-  color:#ff8c9e;
+  color:#ff7b9e;
 }
 
-/* =========================
-   SHARE
-========================= */
+
+/* ===============================
+   SHARE BOX
+================================ */
 
 .share-box{
-  margin-top:25px;
-  padding:20px;
-  border:1px solid rgba(255,211,106,.25);
-  border-radius:20px;
-  background:rgba(255,211,106,.04);
-}
 
-.share-box input{
-  margin-bottom:8px;
+  margin-top:25px;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  border:
+    1px solid
+    rgba(255,211,106,.25);
+
+  background:
+    rgba(255,211,106,.04);
 }
 
 .hidden{
   display:none!important;
 }
 
-/* =========================
-   OPENING
-========================= */
+.share-box input{
 
-.hero{
+  margin-bottom:12px;
+
   text-align:center;
+
+  font-size:12px;
 }
 
+.share-actions{
+
+  display:flex;
+
+  gap:10px;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+}
+
+
+/* ===============================
+   MUSIC
+================================ */
+
+.music{
+
+  position:fixed;
+
+  right:14px;
+
+  top:14px;
+
+  z-index:1000;
+
+  border:
+    1px solid
+    rgba(255,211,106,.35);
+
+  background:
+    rgba(10,3,15,.88);
+
+  color:var(--gold);
+
+  border-radius:999px;
+
+  padding:10px 15px;
+
+  backdrop-filter:blur(12px);
+
+  display:none;
+}
+
+.music.playing{
+
+  box-shadow:
+    0 0 25px
+    rgba(255,79,154,.4);
+}
+
+
+/* ===============================
+   LOADING
+================================ */
+
+.loader{
+
+  width:65px;
+
+  height:65px;
+
+  border-radius:50%;
+
+  border:
+    4px solid
+    rgba(255,211,106,.15);
+
+  border-top-color:
+    var(--gold);
+
+  border-right-color:
+    var(--pink);
+
+  margin:
+    0 auto 25px;
+
+  animation:
+    spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* ===============================
+   ENVELOPE
+================================ */
+
 .envelope{
-  margin-bottom:15px;
+
   font-size:75px;
-  filter:drop-shadow(0 0 20px rgba(255,79,154,.35));
-  animation:float 2.4s ease-in-out infinite;
+
+  margin-bottom:15px;
+
+  text-align:center;
+
+  animation:
+    float 2.5s
+    ease-in-out infinite;
 }
 
 @keyframes float{
+
   0%,100%{
     transform:translateY(0);
   }
+
   50%{
     transform:translateY(-10px);
   }
+
 }
 
-/* =========================
+
+/* ===============================
    MEMORY
-========================= */
+================================ */
 
 .memory-view{
   text-align:center;
 }
 
 .memory-count{
-  margin-bottom:15px;
+
   color:var(--gold);
-  font-size:12px;
-  font-weight:700;
+
   letter-spacing:2px;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  margin-bottom:15px;
 }
 
 #memoryImage{
-  display:block;
+
   width:100%;
-  max-height:55vh;
+
+  max-height:500px;
+
   object-fit:cover;
+
+  display:block;
+
   border-radius:20px;
-  border:1px solid rgba(255,211,106,.15);
+
+  border:
+    1px solid
+    rgba(255,211,106,.18);
+
+  box-shadow:
+    0 20px 45px
+    rgba(0,0,0,.4);
+
   background:#08030f;
-  box-shadow:0 15px 45px rgba(0,0,0,.45);
+
+  margin-bottom:17px;
 }
 
 .caption{
-  margin-top:15px;
-  color:#f4ddea;
-  font-size:14px;
+
+  color:#f5dfea;
+
   line-height:1.6;
+
+  font-size:14px;
+
+  margin-bottom:13px;
+}
+
+.typed{
+
+  color:#fff;
+
+  line-height:1.8;
+
+  font-size:15px;
+
+  white-space:pre-wrap;
+
+  min-height:25px;
 }
 
 .dots{
+
   display:flex;
+
   justify-content:center;
+
   gap:7px;
+
   margin:15px 0;
 }
 
 .dot{
-  width:8px;
-  height:8px;
+
+  width:7px;
+
+  height:7px;
+
   border-radius:50%;
-  background:#59465d;
+
+  background:
+    rgba(255,255,255,.2);
 }
 
 .dot.active{
+
+  width:22px;
+
+  border-radius:10px;
+
   background:var(--pink);
-  box-shadow:0 0 12px var(--pink);
 }
 
-.typed{
-  min-height:35px;
-  margin:18px 0;
-  color:#fff4fb;
-  font-size:15px;
-  line-height:1.8;
-  white-space:pre-wrap;
+.nav-buttons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  margin-top:22px;
 }
 
-/* =========================
+
+/* ===============================
    CAKE
-========================= */
-
-.cake-wrap{
-  text-align:center;
-}
+================================ */
 
 .cake{
+
   position:relative;
+
   width:240px;
-  height:230px;
-  margin:25px auto 30px;
+
+  height:220px;
+
+  margin:
+    15px auto 25px;
 }
 
 .cake-base{
-  position:absolute;
-  left:20px;
-  bottom:15px;
-  width:200px;
-  height:90px;
-  border-radius:18px 18px 25px 25px;
-  background:linear-gradient(#ff78b8,#b72869);
-  box-shadow:0 12px 30px rgba(255,79,154,.25);
-}
 
-.cake-base:before{
-  content:"";
   position:absolute;
-  left:0;
-  top:20px;
-  width:100%;
-  height:12px;
-  background:#ffd36a;
-  border-radius:50%;
+
+  bottom:25px;
+
+  left:20px;
+
+  width:200px;
+
+  height:75px;
+
+  border-radius:
+    12px
+    12px
+    25px
+    25px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ff78b8,
+      #b92768
+    );
+
+  box-shadow:
+    inset 0 10px 0
+    rgba(255,255,255,.12),
+    0 15px 30px
+    rgba(0,0,0,.35);
 }
 
 .cake-top{
+
   position:absolute;
-  left:35px;
-  bottom:85px;
-  width:170px;
-  height:55px;
-  border-radius:50%;
-  background:#ff9bca;
-  box-shadow:inset 0 -10px 0 rgba(255,255,255,.12);
+
+  bottom:88px;
+
+  left:30px;
+
+  width:180px;
+
+  height:45px;
+
+  border-radius:
+    50%
+    50%
+    20px
+    20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffd6e8,
+      #ff9fc9
+    );
 }
 
 .candle{
+
   position:absolute;
-  bottom:137px;
-  width:20px;
+
+  bottom:127px;
+
+  width:17px;
+
   height:60px;
-  border-radius:7px 7px 3px 3px;
-  background:linear-gradient(90deg,#ffd36a,#fff0aa,#ffb92e);
+
+  border-radius:6px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #fff,
+      #fff 6px,
+      #ff4f9a 6px,
+      #ff4f9a 12px
+    );
+
   z-index:5;
 }
 
 .candle:nth-child(1){
-  left:65px;
+  left:57px;
 }
 
 .candle:nth-child(2){
-  left:110px;
+  left:111px;
 }
 
 .candle:nth-child(3){
-  left:155px;
+  right:57px;
 }
 
 .flame{
+
   position:absolute;
+
   left:50%;
-  top:-23px;
-  width:15px;
-  height:23px;
-  transform:translateX(-50%);
-  border-radius:50% 50% 50% 50%;
-  background:linear-gradient(#fff,#ffd36a,#ff6a00);
-  box-shadow:0 0 18px #ff9f1c;
-  animation:flicker .5s ease-in-out infinite alternate;
+
+  top:-25px;
+
+  width:17px;
+
+  height:25px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 50% 65%,
+      #fff 0 15%,
+      #ffd36a 30%,
+      #ff9f1c 65%,
+      transparent 70%
+    );
+
+  animation:
+    flame .55s
+    ease-in-out infinite alternate;
 }
 
-@keyframes flicker{
+@keyframes flame{
+
   from{
-    transform:translateX(-50%) scale(.9);
+    transform:
+      translateX(-50%)
+      scale(.9);
   }
+
   to{
-    transform:translateX(-50%) scale(1.08);
+    transform:
+      translateX(-50%)
+      scale(1.1);
   }
+
 }
 
 .candle.off .flame{
   display:none;
 }
 
-/* =========================
-   MESSAGE
-========================= */
 
-.message{
-  text-align:center;
+/* ===============================
+   FINAL PHOTOS
+================================ */
+
+#finalPhotos{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(120px,1fr)
+    );
+
+  gap:9px;
+
+  margin-bottom:25px;
 }
 
-.message-box{
-  padding:20px;
-  margin:20px 0;
-  border:1px solid rgba(255,79,154,.16);
-  border-radius:20px;
-  background:rgba(5,2,10,.45);
+#finalPhotos img{
+
+  width:100%;
+
+  aspect-ratio:1/1;
+
+  object-fit:cover;
+
+  border-radius:15px;
+
+  border:
+    1px solid
+    rgba(255,211,106,.15);
 }
 
 .celebrate{
+
   font-size:75px;
-  animation:float 2.4s ease-in-out infinite;
-}
 
-.final-photos{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:20px 0;
-}
-
-.final-photos img{
-  width:100%;
-  aspect-ratio:1;
-  object-fit:cover;
-  border-radius:15px;
-  border:1px solid rgba(255,211,106,.18);
-}
-
-/* =========================
-   FIREWORK
-========================= */
-
-.firework{
-  position:fixed;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#ffd36a;
-  z-index:5000;
-  pointer-events:none;
-  animation:boom 1.5s ease-out forwards;
-}
-
-@keyframes boom{
-  0%{
-    transform:scale(.5);
-    opacity:1;
-    box-shadow:0 0 0 0 rgba(255,211,106,.9);
-  }
-
-  100%{
-    transform:scale(1);
-    opacity:0;
-    box-shadow:
-      0 -90px 0 3px rgba(255,79,154,.8),
-      60px -60px 0 3px rgba(255,211,106,.8),
-      90px 0 0 3px rgba(255,159,28,.8),
-      60px 60px 0 3px rgba(255,79,154,.8),
-      0 90px 0 3px rgba(255,211,106,.8),
-      -60px 60px 0 3px rgba(255,159,28,.8),
-      -90px 0 0 3px rgba(255,79,154,.8),
-      -60px -60px 0 3px rgba(255,211,106,.8);
-  }
-}
-
-.confetti{
-  position:fixed;
-  top:-30px;
-  z-index:4999;
-  pointer-events:none;
-  font-size:20px;
-  animation:confettiFall 4.5s linear forwards;
-}
-
-@keyframes confettiFall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
-    opacity:.1;
-  }
-}
-
-/* =========================
-   LOADING
-========================= */
-
-#loadingScreen{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:10000;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  background:
-    radial-gradient(circle at 50% 40%,rgba(255,79,154,.15),transparent 35%),
-    #08030f;
-}
-
-#loadingScreen.show{
-  display:flex;
-}
-
-.loading-card{
-  width:min(420px,100%);
-  padding:30px;
-  border:1px solid rgba(255,211,106,.2);
-  border-radius:25px;
-  background:rgba(25,8,35,.9);
   text-align:center;
 }
 
-.loader{
-  width:45px;
-  height:45px;
-  margin:0 auto 20px;
-  border:4px solid rgba(255,255,255,.12);
-  border-top-color:var(--pink);
+
+/* ===============================
+   FIREWORK
+================================ */
+
+.firework{
+
+  position:fixed;
+
+  width:7px;
+
+  height:7px;
+
   border-radius:50%;
-  animation:spin .8s linear infinite;
+
+  background:var(--gold);
+
+  z-index:3000;
+
+  pointer-events:none;
+
+  animation:
+    boom 1.5s
+    ease-out
+    forwards;
 }
 
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
+@keyframes boom{
+
+  0%{
+
+    transform:scale(.5);
+
+    opacity:1;
+
+    box-shadow:
+      0 0 0 0
+      rgba(255,211,106,.9);
   }
+
+  100%{
+
+    transform:scale(1);
+
+    opacity:0;
+
+    box-shadow:
+
+      0 -90px 0 3px
+      rgba(255,79,154,.8),
+
+      60px -60px 0 3px
+      rgba(255,211,106,.8),
+
+      90px 0 0 3px
+      rgba(255,159,28,.8),
+
+      60px 60px 0 3px
+      rgba(255,79,154,.8),
+
+      0 90px 0 3px
+      rgba(255,211,106,.8),
+
+      -60px 60px 0 3px
+      rgba(255,159,28,.8),
+
+      -90px 0 0 3px
+      rgba(255,79,154,.8),
+
+      -60px -60px 0 3px
+      rgba(255,211,106,.8);
+  }
+
 }
 
-.loading-card p{
-  color:var(--muted);
+
+/* ===============================
+   CONFETTI
+================================ */
+
+.confetti{
+
+  position:fixed;
+
+  top:-30px;
+
+  z-index:2999;
+
+  pointer-events:none;
+
+  font-size:20px;
+
+  animation:
+    confettiFall
+    4.5s
+    linear
+    forwards;
 }
 
-/* =========================
+@keyframes confettiFall{
+
+  to{
+
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+
+    opacity:.1;
+  }
+
+}
+
+
+/* ===============================
    MOBILE
-========================= */
+================================ */
 
 @media(max-width:520px){
 
   .screen{
-    padding:70px 11px 25px;
+
+    padding:
+      70px
+      11px
+      25px;
   }
 
   .card{
-    padding:20px 15px;
-    border-radius:20px;
+
+    padding:
+      21px
+      15px;
+
+    border-radius:21px;
   }
 
   .music{
+
     top:9px;
+
     right:9px;
-    padding:9px 12px;
+
+    padding:
+      9px
+      12px;
+
     font-size:13px;
   }
 
   .share-actions,
   .nav-buttons{
+
     flex-direction:column;
   }
 
-  .final-photos{
-    gap:7px;
+  .share-actions button,
+  .nav-buttons button{
+
+    width:100%;
   }
 
-  .final-photos img{
-    border-radius:11px;
+  #memoryImage{
+
+    max-height:65vh;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<div id="loadingScreen">
-  <div class="loading-card">
-    <div class="loader"></div>
-    <h2>Opening Your Surprise ✨</h2>
-    <p id="loadingText">Please wait...</p>
-  </div>
-</div>
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
 <div id="stars"></div>
 
-<button id="musicBtn" class="music" type="button">
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<button
+  id="musicBtn"
+  class="music"
+  type="button"
+>
   🎵 Music OFF
 </button>
 
-<audio id="music" preload="auto" loop></audio>
+<audio
+  id="music"
+  preload="auto"
+  loop
+></audio>
 
 
-<!-- ==================================================
-     CREATE PAGE
-================================================== -->
+<!-- =====================================================
+     LOADING
+===================================================== -->
 
-<section id="setup" class="screen">
+<section
+  id="loadingScreen"
+  class="screen active"
+>
+
   <div class="container">
+
+    <div class="card">
+
+      <div class="loader"></div>
+
+      <h1 class="big-text">
+        Opening Your Surprise ✨
+      </h1>
+
+      <p class="subtitle">
+        Please wait...
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ERROR
+===================================================== -->
+
+<section
+  id="errorScreen"
+  class="screen"
+>
+
+  <div class="container">
+
+    <div class="card">
+
+      <div class="envelope">
+        💔
+      </div>
+
+      <h1 class="big-text">
+        Surprise Not Found
+      </h1>
+
+      <p
+        id="errorText"
+        class="subtitle"
+      >
+        This birthday surprise could not be loaded.
+      </p>
+
+      <button
+        id="backCreateBtn"
+        class="primary"
+        type="button"
+      >
+        ✨ Create New Surprise
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     CREATE PAGE
+===================================================== -->
+
+<section
+  id="setup"
+  class="screen"
+>
+
+  <div class="container">
+
     <div class="card">
 
       <div class="eyebrow">
@@ -762,13 +1295,16 @@ textarea::placeholder{
       </h1>
 
       <p class="subtitle">
-        Create a beautiful birthday journey with
-        memories, music and a personal message.
+        Create a beautiful birthday journey
+        with memories, music and a personal message.
       </p>
 
 
       <div class="group">
-        <label>Birthday Person *</label>
+
+        <label>
+          Birthday Person *
+        </label>
 
         <input
           id="name"
@@ -776,11 +1312,15 @@ textarea::placeholder{
           placeholder="e.g. Megha"
           autocomplete="off"
         >
+
       </div>
 
 
       <div class="group">
-        <label>Your Name</label>
+
+        <label>
+          Your Name
+        </label>
 
         <input
           id="sender"
@@ -788,11 +1328,15 @@ textarea::placeholder{
           placeholder="e.g. Devraj"
           autocomplete="off"
         >
+
       </div>
 
 
       <div class="group">
-        <label>Relation</label>
+
+        <label>
+          Relation
+        </label>
 
         <input
           id="relation"
@@ -800,18 +1344,25 @@ textarea::placeholder{
           placeholder="e.g. Special Friend"
           autocomplete="off"
         >
+
       </div>
 
 
       <div class="group">
-        <label>Final Birthday Message</label>
+
+        <label>
+          Final Birthday Message
+        </label>
 
         <textarea
           id="finalMessage"
           placeholder="Write your special birthday message..."
         ></textarea>
+
       </div>
 
+
+      <!-- MEMORY FORM WILL COME HERE -->
 
       <div id="memoriesForm"></div>
 
@@ -829,7 +1380,8 @@ textarea::placeholder{
         >
 
         <div class="help">
-          Use a direct audio URL, not a YouTube watch link.
+          Use a direct audio URL,
+          not a YouTube watch link.
         </div>
 
       </div>
@@ -857,8 +1409,8 @@ textarea::placeholder{
         </div>
 
         <div class="help">
-          The music file will be uploaded to Supabase
-          so it can work from the shared link.
+          Your music will be uploaded
+          to the birthday surprise.
         </div>
 
       </div>
@@ -868,13 +1420,19 @@ textarea::placeholder{
         id="createBtn"
         class="primary"
         type="button"
+        style="width:100%;"
       >
         ✨ Create My Birthday Magic
       </button>
 
 
-      <div id="status" class="status"></div>
+      <div
+        id="status"
+        class="status"
+      ></div>
 
+
+      <!-- SHARE LINK -->
 
       <div
         id="shareBox"
@@ -914,19 +1472,24 @@ textarea::placeholder{
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
-<!-- ==================================================
-     OPENING
-================================================== -->
+<!-- =====================================================
+     SURPRISE OPENING
+===================================================== -->
 
-<section id="opening" class="screen">
+<section
+  id="opening"
+  class="screen"
+>
 
   <div class="container">
 
-    <div class="card hero">
+    <div class="card">
 
       <div class="envelope">
         💌
@@ -937,16 +1500,19 @@ textarea::placeholder{
       </div>
 
       <h1 class="big-text">
+
         🎂 Happy Birthday
+
         <span
           id="introName"
           class="name-highlight"
         ></span>
+
       </h1>
 
       <p class="subtitle">
-        Someone has created a little magical journey
-        especially for you. ❤️
+        Someone has created a little magical
+        journey especially for you. ❤️
       </p>
 
       <button
@@ -964,15 +1530,18 @@ textarea::placeholder{
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      INTRO
-================================================== -->
+===================================================== -->
 
-<section id="intro" class="screen">
+<section
+  id="intro"
+  class="screen"
+>
 
   <div class="container">
 
-    <div class="card hero">
+    <div class="card">
 
       <div class="eyebrow">
         💖 MADE JUST FOR YOU
@@ -981,23 +1550,33 @@ textarea::placeholder{
       <h1 class="big-text">
 
         Hello
+
         <span
           id="messageName"
           class="name-highlight"
         ></span>
+
         ✨
 
       </h1>
 
       <p class="subtitle">
-        Get ready to walk through some beautiful
-        memories before reaching your birthday message.
+
+        Get ready to walk through
+        some beautiful memories before
+        reaching your birthday message.
+
       </p>
 
       <p class="subtitle">
+
         From
-        <strong id="senderName"></strong>
+
+        <strong id="senderName">
+        </strong>
+
         ❤️
+
       </p>
 
       <button
@@ -1015,11 +1594,14 @@ textarea::placeholder{
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MEMORY
-================================================== -->
+===================================================== -->
 
-<section id="memory" class="screen">
+<section
+  id="memory"
+  class="screen"
+>
 
   <div class="container">
 
@@ -1032,259 +1614,32 @@ textarea::placeholder{
         MEMORY 1 OF 1
       </div>
 
-
       <img
         id="memoryImage"
         src=""
         alt="Birthday memory"
       >
 
-
       <div
         id="photoCaption"
         class="caption"
       ></div>
 
-
       <div
         id="dots"
         class="dots"
-      ></div>
+      ></div
+         <script>
 
+/* =========================================================
+   BIRTHDAY MAGIC — PART 2
+   DATABASE + STORAGE + SHARE LINK + EXPERIENCE
+========================================================= */
 
-      <div
-        id="typedText"
-        class="typed"
-      ></div>
 
-
-      <div class="nav-buttons">
-
-        <button
-          id="prevMemory"
-          class="secondary"
-          type="button"
-        >
-          ← Previous
-        </button>
-
-        <button
-          id="nextMemory"
-          class="primary"
-          type="button"
-        >
-          Next Memory ❤️
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     CAKE
-================================================== -->
-
-<section id="cakeScreen" class="screen">
-
-  <div class="container">
-
-    <div class="card cake-wrap">
-
-      <div class="eyebrow">
-        🎂 MAKE A WISH
-      </div>
-
-      <h1 class="big-text">
-        One Last Little Surprise ✨
-      </h1>
-
-      <p class="subtitle">
-        Tap the candles to turn them off,
-        or use the button below.
-      </p>
-
-
-      <div class="cake">
-
-        <div class="candle">
-          <div class="flame"></div>
-        </div>
-
-        <div class="candle">
-          <div class="flame"></div>
-        </div>
-
-        <div class="candle">
-          <div class="flame"></div>
-        </div>
-
-        <div class="cake-top"></div>
-
-        <div class="cake-base"></div>
-
-      </div>
-
-
-      <button
-        id="blowBtn"
-        class="primary"
-        type="button"
-      >
-        🕯️ Blow Out The Candles
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     MESSAGE
-================================================== -->
-
-<section id="messageScreen" class="screen">
-
-  <div class="container">
-
-    <div class="card message">
-
-      <div class="eyebrow">
-        💌 A MESSAGE JUST FOR YOU
-      </div>
-
-      <h1 class="big-text">
-
-        Happy Birthday
-
-        <span
-          id="finalName"
-          class="name-highlight"
-        ></span>
-
-        ❤️
-
-      </h1>
-
-
-      <div class="message-box">
-
-        <div
-          id="finalTyped"
-          class="typed"
-        ></div>
-
-      </div>
-
-
-      <button
-        id="finalBtn"
-        class="primary"
-        type="button"
-      >
-        🎉 See The Final Surprise
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ==================================================
-     FINAL
-================================================== -->
-
-<section id="finalScreen" class="screen">
-
-  <div class="container">
-
-    <div class="card message">
-
-      <div class="celebrate">
-        🎉
-      </div>
-
-      <div class="eyebrow">
-        ✨ THE SURPRISE ✨
-      </div>
-
-
-      <h1 class="big-text">
-
-        Happy Birthday
-
-        <span
-          id="finalName2"
-          class="name-highlight"
-        ></span>!
-
-      </h1>
-
-
-      <p class="subtitle">
-
-        With lots of love from
-
-        <strong id="finalSender"></strong>
-
-        ❤️
-
-      </p>
-
-
-      <div class="message-box">
-
-        <div
-          id="finalMessageShow"
-          class="typed"
-        ></div>
-
-      </div>
-
-
-      <div id="finalPhotos" class="final-photos"></div>
-
-
-      <button
-        id="fireBtn"
-        class="primary"
-        type="button"
-      >
-        🎆 Celebrate Again
-      </button>
-
-
-      <br><br>
-
-
-      <button
-        id="restartBtn"
-        class="secondary"
-        type="button"
-      >
-        🔄 Create Another Surprise
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<script>
-
-/* ==================================================
+/* =========================================================
    SUPABASE CONFIG
-================================================== */
+========================================================= */
 
 const SUPABASE_URL =
   "https://mlwfuysdbqzgwfgzqwd.supabase.co";
@@ -1292,13 +1647,12 @@ const SUPABASE_URL =
 const SUPABASE_ANON_KEY =
   "sb_publishable_lloRqy5KDRMkrkVBasR_VA_L5BLtqW4";
 
-const STORAGE_BUCKET =
-  "birthday-media";
 
+/* =========================================================
+   HELPERS
+========================================================= */
 
-/* ==================================================
-   GLOBAL DATA
-================================================== */
+const $ = id => document.getElementById(id);
 
 let data = {
   name:"",
@@ -1313,13 +1667,34 @@ let currentMemory = 0;
 let typingTimer = null;
 
 
-/* ==================================================
-   HELPERS
-================================================== */
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
 
-const $ = id =>
-  document.getElementById(id);
+function show(id){
 
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
+
+  const target = $(id);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 function setStatus(text,type=""){
 
@@ -1330,60 +1705,40 @@ function setStatus(text,type=""){
   el.textContent = text;
 
   el.className =
-    "status " + type;
+    "status " +
+    type;
 }
 
 
-function show(id){
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
 
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-
-      screen.classList.remove("active");
-
-    });
-
-  const target = $(id);
-
-  if(target){
-
-    target.classList.add("active");
-
-  }
-
-  window.scrollTo({
-    top:0,
-    behavior:"instant"
-  });
-}
-
-
-function typeText(el,text,speed=28){
+function typeText(
+  element,
+  text,
+  speed=28
+){
 
   clearInterval(typingTimer);
 
-  el.textContent = "";
+  element.textContent = "";
 
   let i = 0;
-
-  if(!text){
-
-    return;
-
-  }
 
   typingTimer =
     setInterval(() => {
 
-      el.textContent +=
+      element.textContent +=
         text.charAt(i);
 
       i++;
 
       if(i >= text.length){
 
-        clearInterval(typingTimer);
+        clearInterval(
+          typingTimer
+        );
 
       }
 
@@ -1391,227 +1746,151 @@ function typeText(el,text,speed=28){
 }
 
 
-/* ==================================================
-   FIREWORKS
-================================================== */
-
-function firework(
-  x=Math.random()*innerWidth,
-  y=Math.random()*innerHeight*.65
-){
-
-  const e =
-    document.createElement("div");
-
-  e.className = "firework";
-
-  e.style.left =
-    x + "px";
-
-  e.style.top =
-    y + "px";
-
-  document.body.appendChild(e);
-
-  setTimeout(
-    () => e.remove(),
-    1600
-  );
-}
-
-
-function confetti(){
-
-  const chars = [
-    "🎉",
-    "✨",
-    "💖",
-    "🎊",
-    "⭐",
-    "💗"
-  ];
-
-  for(let i=0;i<35;i++){
-
-    const e =
-      document.createElement("div");
-
-    e.className =
-      "confetti";
-
-    e.textContent =
-      chars[
-        Math.floor(
-          Math.random()*chars.length
-        )
-      ];
-
-    e.style.left =
-      Math.random()*100 + "vw";
-
-    e.style.animationDelay =
-      Math.random()*.8 + "s";
-
-    document.body.appendChild(e);
-
-    setTimeout(
-      () => e.remove(),
-      5000
-    );
-
-  }
-
-}
-
-
-function celebrate(){
-
-  for(let i=0;i<9;i++){
-
-    setTimeout(
-      () => {
-
-        firework(
-          Math.random()*innerWidth,
-          100 +
-          Math.random()*
-          innerHeight*.55
-        );
-
-      },
-      i*120
-    );
-
-  }
-
-  confetti();
-
-}
-
-
-/* ==================================================
+/* =========================================================
    STARS
-================================================== */
+========================================================= */
 
-for(let i=0;i<90;i++){
+for(let i=0;i<100;i++){
 
-  const s =
+  const star =
     document.createElement("div");
 
-  s.className =
-    "star";
+  star.className = "star";
 
-  s.style.left =
+  star.style.left =
     Math.random()*100 + "%";
 
-  s.style.top =
+  star.style.top =
     Math.random()*100 + "%";
 
-  s.style.animationDelay =
+  star.style.animationDelay =
     Math.random()*2.5 + "s";
 
-  $("stars").appendChild(s);
-
+  $("stars").appendChild(star);
 }
 
 
-/* ==================================================
+/* =========================================================
    MEMORY FORM
-================================================== */
+========================================================= */
+
+const memoriesForm =
+  $("memoriesForm");
 
 for(let i=1;i<=3;i++){
 
-  $("memoriesForm").insertAdjacentHTML(
+  memoriesForm.insertAdjacentHTML(
     "beforeend",
-    `
-      <div class="memory-card">
 
-        <div class="memory-title">
-          💞 Memory ${i}
-        </div>
+`
+<div class="memory-card">
 
-        <div class="group">
+  <div class="memory-title">
+    💞 Memory ${i}
+  </div>
 
-          <label>
-            Photo
-          </label>
+  <div class="group">
 
-          <div class="filebox">
+    <label>
+      📸 Photo
+    </label>
 
-            <input
-              id="file${i}"
-              type="file"
-              accept="image/*"
-            >
+    <div class="filebox">
 
-            <div
-              id="fileName${i}"
-              class="file-name"
-            ></div>
+      <input
+        id="file${i}"
+        type="file"
+        accept="image/*"
+      >
 
-          </div>
+      <div
+        id="fileName${i}"
+        class="file-name"
+      ></div>
 
-        </div>
+    </div>
 
-        <div class="group">
+  </div>
 
-          <label>
-            Or public image URL
-          </label>
 
-          <input
-            id="url${i}"
-            type="url"
-            placeholder="https://example.com/photo.jpg"
-          >
+  <div class="group">
 
-        </div>
+    <label>
+      🌐 Or Public Image URL
+    </label>
 
-        <div class="group">
+    <input
+      id="url${i}"
+      type="url"
+      placeholder="https://example.com/photo.jpg"
+    >
 
-          <label>
-            Message for Memory ${i}
-          </label>
+  </div>
 
-          <textarea
-            id="caption${i}"
-            placeholder="Write something about this memory..."
-          ></textarea>
 
-        </div>
+  <div class="group">
 
-      </div>
-    `
+    <label>
+      💌 Message for Memory ${i}
+    </label>
+
+    <textarea
+      id="caption${i}"
+      placeholder="Write something special about this memory..."
+    ></textarea>
+
+  </div>
+
+</div>
+`
   );
 
 
-  $("file"+i).addEventListener(
+  $("file"+i)
+    .addEventListener(
+      "change",
+      event => {
+
+        const file =
+          event.target.files[0];
+
+        $("fileName"+i)
+          .textContent =
+          file
+          ? "Selected: " + file.name
+          : "";
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   MUSIC FILE NAME
+========================================================= */
+
+$("musicFile")
+  .addEventListener(
     "change",
     event => {
 
-      $("fileName"+i).textContent =
-        event.target.files[0]?.name || "";
+      const file =
+        event.target.files[0];
+
+      $("musicFileName")
+        .textContent =
+        file
+        ? "Selected: " + file.name
+        : "";
 
     }
   );
 
-}
 
-
-$("musicFile").addEventListener(
-  "change",
-  event => {
-
-    $("musicFileName").textContent =
-      event.target.files[0]?.name || "";
-
-  }
-);
-
-
-/* ==================================================
+/* =========================================================
    SUPABASE HEADERS
-================================================== */
+========================================================= */
 
 const supabaseHeaders = {
 
@@ -1625,9 +1904,9 @@ const supabaseHeaders = {
 };
 
 
-/* ==================================================
+/* =========================================================
    UPLOAD FILE
-================================================== */
+========================================================= */
 
 async function uploadFile(
   file,
@@ -1635,19 +1914,18 @@ async function uploadFile(
 ){
 
   if(!file){
-
     throw new Error(
       "No file selected."
     );
-
   }
 
 
-  const safeName =
-    file.name.replace(
-      /[^a-zA-Z0-9._-]/g,
-      "_"
-    );
+  const cleanName =
+    file.name
+      .replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+      );
 
 
   const path =
@@ -1655,18 +1933,17 @@ async function uploadFile(
     "/" +
     crypto.randomUUID() +
     "_" +
-    safeName;
+    cleanName;
 
 
   const response =
     await fetch(
-      SUPABASE_URL +
-      "/storage/v1/object/" +
-      STORAGE_BUCKET +
-      "/" +
-      path,
-      {
 
+      SUPABASE_URL +
+      "/storage/v1/object/birthday-media/" +
+      path,
+
+      {
         method:"POST",
 
         headers:{
@@ -1678,57 +1955,61 @@ async function uploadFile(
 
           "x-upsert":
             "true"
-
         },
 
         body:file
-
       }
+
     );
 
 
   if(!response.ok){
 
-    const errorText =
+    const error =
       await response.text();
 
     throw new Error(
-      "Storage upload failed: " +
-      errorText
+      "File upload failed: " +
+      error
     );
 
   }
 
 
   return (
+
     SUPABASE_URL +
-    "/storage/v1/object/public/" +
-    STORAGE_BUCKET +
-    "/" +
+
+    "/storage/v1/object/public/birthday-media/" +
+
     path
+
   );
 
 }
 
 
-/* ==================================================
+/* =========================================================
    SAVE SURPRISE
-================================================== */
+========================================================= */
 
 async function saveSurprise(
-  payload,
-  id
+  id,
+  payload
 ){
 
   const response =
     await fetch(
+
       SUPABASE_URL +
       "/rest/v1/birthday_surprises",
+
       {
 
         method:"POST",
 
         headers:{
+
           ...supabaseHeaders,
 
           "Content-Type":
@@ -1739,65 +2020,72 @@ async function saveSurprise(
 
         },
 
-        body:JSON.stringify({
+        body:
+          JSON.stringify({
 
-          id:id,
+            id:id,
 
-          payload:payload
+            payload:payload
 
-        })
+          })
 
       }
+
     );
 
 
   if(!response.ok){
 
-    const errorText =
+    const error =
       await response.text();
 
     throw new Error(
       "Database save failed: " +
-      errorText
+      error
     );
 
   }
 
-
-  return true;
-
 }
 
 
-/* ==================================================
+/* =========================================================
    LOAD SURPRISE
-================================================== */
+========================================================= */
 
 async function loadSurprise(id){
 
   const response =
     await fetch(
+
       SUPABASE_URL +
+
       "/rest/v1/birthday_surprises" +
+
       "?id=eq." +
+
       encodeURIComponent(id) +
+
       "&select=payload&limit=1",
+
       {
+        method:"GET",
+
         headers:
-          supabaseHeaders,
-        cache:"no-store"
+          supabaseHeaders
       }
+
     );
 
 
   if(!response.ok){
 
-    const errorText =
+    const error =
       await response.text();
 
     throw new Error(
       "Database read failed: " +
-      errorText
+      error
     );
 
   }
@@ -1808,12 +2096,12 @@ async function loadSurprise(id){
 
 
   if(
-    !Array.isArray(rows) ||
-    rows.length === 0
+    !rows ||
+    !rows.length
   ){
 
     throw new Error(
-      "Surprise not found."
+      "This birthday surprise does not exist."
     );
 
   }
@@ -1824,101 +2112,168 @@ async function loadSurprise(id){
 }
 
 
-/* ==================================================
-   CREATE SURPRISE
-================================================== */
+/* =========================================================
+   CREATE SHARE LINK
+========================================================= */
 
-$("createBtn").addEventListener(
-  "click",
-  async () => {
+function createShareLink(id){
 
-    const name =
-      $("name").value.trim();
+  /*
+    IMPORTANT:
 
+    Ye current website ka URL leta hai.
 
-    if(!name){
+    Example:
 
-      setStatus(
-        "Please enter the birthday person's name.",
-        "error"
-      );
+    https://yourusername.github.io/birthday/
 
-      $("name").focus();
+    uske baad:
 
-      return;
+    ?id=xxxxxxxx
 
-    }
+    Result:
 
+    https://yourusername.github.io/birthday/?id=xxxxxxxx
+  */
 
-    const button =
-      $("createBtn");
-
-    button.disabled =
-      true;
-
-
-    setStatus(
-      "Creating your surprise..."
+  const url =
+    new URL(
+      location.href
     );
 
+  url.search = "";
 
-    try{
+  url.hash = "";
 
-      const memories = [];
+  url.searchParams.set(
+    "id",
+    id
+  );
 
+  return url.toString();
 
-      /* UPLOAD PHOTOS */
-
-      for(let i=1;i<=3;i++){
-
-        const file =
-          $("file"+i)
-            .files[0];
-
-        const url =
-          $("url"+i)
-            .value
-            .trim();
-
-        const caption =
-          $("caption"+i)
-            .value
-            .trim();
+}
 
 
-        if(file){
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
 
-          setStatus(
-            "Uploading Memory " +
-            i +
-            " of 3..."
-          );
+$("createBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        $("name")
+          .value
+          .trim();
 
 
-          const uploadedUrl =
-            await uploadFile(
-              file,
-              "images"
+      if(!name){
+
+        setStatus(
+          "Please enter the birthday person's name.",
+          "error"
+        );
+
+        $("name").focus();
+
+        return;
+
+      }
+
+
+      const button =
+        $("createBtn");
+
+      button.disabled = true;
+
+
+      try{
+
+        setStatus(
+          "Preparing your birthday surprise..."
+        );
+
+
+        /* -----------------------------------------------
+           MEMORIES
+        ------------------------------------------------ */
+
+        const memories = [];
+
+
+        for(
+          let i=1;
+          i<=3;
+          i++
+        ){
+
+          const file =
+            $("file"+i)
+              .files[0];
+
+
+          const imageURL =
+            $("url"+i)
+              .value
+              .trim();
+
+
+          const caption =
+            $("caption"+i)
+              .value
+              .trim();
+
+
+          /*
+             If neither image nor URL exists,
+             skip this memory.
+          */
+
+          if(
+            !file &&
+            !imageURL
+          ){
+
+            continue;
+
+          }
+
+
+          let finalImageURL =
+            imageURL;
+
+
+          /*
+             PHONE PHOTO
+             ↓
+             SUPABASE STORAGE
+          */
+
+          if(file){
+
+            setStatus(
+              "Uploading Memory " +
+              i +
+              "..."
             );
 
 
-          memories.push({
+            finalImageURL =
+              await uploadFile(
+                file,
+                "images"
+              );
 
-            image:
-              uploadedUrl,
+          }
 
-            caption:
-              caption
-
-          });
-
-
-        }else if(url){
 
           memories.push({
 
             image:
-              url,
+              finalImageURL,
 
             caption:
               caption
@@ -1927,293 +2282,524 @@ $("createBtn").addEventListener(
 
         }
 
-      }
+
+        /* -----------------------------------------------
+           MUSIC
+        ------------------------------------------------ */
+
+        let music =
+          $("musicUrl")
+            .value
+            .trim();
 
 
-      /* MUSIC */
-
-      let music =
-        $("musicUrl")
-          .value
-          .trim();
+        const musicFile =
+          $("musicFile")
+            .files[0];
 
 
-      const musicFile =
-        $("musicFile")
-          .files[0];
+        if(musicFile){
 
-
-      if(musicFile){
-
-        setStatus(
-          "Uploading music..."
-        );
-
-
-        music =
-          await uploadFile(
-            musicFile,
-            "music"
+          setStatus(
+            "Uploading birthday music..."
           );
 
-      }
+
+          music =
+            await uploadFile(
+              musicFile,
+              "music"
+            );
+
+        }
 
 
-      /* PAYLOAD */
+        /* -----------------------------------------------
+           PAYLOAD
+        ------------------------------------------------ */
 
-      const payload = {
+        const payload = {
 
-        name:name,
+          name:name,
 
-        sender:
-          $("sender")
-            .value
-            .trim(),
+          sender:
+            $("sender")
+              .value
+              .trim(),
 
-        relation:
-          $("relation")
-            .value
-            .trim(),
+          relation:
+            $("relation")
+              .value
+              .trim(),
 
-        finalMessage:
-          $("finalMessage")
-            .value
-            .trim() ||
-          "Wishing you a beautiful birthday filled with happiness, love and wonderful memories. ❤️",
+          finalMessage:
 
-        memories:
-          memories,
+            $("finalMessage")
+              .value
+              .trim()
 
-        music:
-          music
+            ||
 
-      };
+            "Wishing you a beautiful birthday filled with happiness, love and wonderful memories. ❤️",
 
+          memories:
 
-      /* UNIQUE ID */
+            memories,
 
-      const id =
-        crypto.randomUUID();
+          music:
 
+            music
 
-      setStatus(
-        "Saving your surprise..."
-      );
+        };
 
 
-      await saveSurprise(
-        payload,
-        id
-      );
+        /* -----------------------------------------------
+           UNIQUE ID
+        ------------------------------------------------ */
+
+        const id =
+          crypto.randomUUID();
 
 
-      /*
-        IMPORTANT:
-        This creates the receiver link.
-        It contains ?id= and therefore
-        automatically opens Surprise Mode.
-      */
-
-      const shareLink =
-        new URL(
-          location.href
+        setStatus(
+          "Saving your birthday surprise..."
         );
 
 
-      shareLink.search = "";
+        await saveSurprise(
+          id,
+          payload
+        );
 
-      shareLink.hash = "";
 
-      shareLink.searchParams.set(
-        "id",
+        /* -----------------------------------------------
+           SHARE LINK
+        ------------------------------------------------ */
+
+        const shareLink =
+          createShareLink(
+            id
+          );
+
+
+        $("shareLink")
+          .value =
+          shareLink;
+
+
+        $("shareBox")
+          .classList
+          .remove("hidden");
+
+
+        setStatus(
+          "🎉 Your birthday surprise link is ready!",
+          "success"
+        );
+
+
+        /*
+          Scroll to link
+        */
+
+        setTimeout(
+          () => {
+
+            $("shareBox")
+              .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+              });
+
+          },
+          200
+        );
+
+
+      }catch(error){
+
+        console.error(error);
+
+        setStatus(
+
+          error.message ||
+
+          "Something went wrong. Please check Supabase settings.",
+
+          "error"
+
+        );
+
+      }finally{
+
+        button.disabled = false;
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   COPY LINK
+========================================================= */
+
+$("copyLinkBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const link =
+        $("shareLink")
+          .value;
+
+
+      if(!link)return;
+
+
+      try{
+
+        await navigator.clipboard
+          .writeText(link);
+
+
+        setStatus(
+          "📋 Link copied! Now send it to the birthday person.",
+          "success"
+        );
+
+
+      }catch{
+
+        $("shareLink")
+          .select();
+
+        document
+          .execCommand("copy");
+
+
+        setStatus(
+          "📋 Link copied!",
+          "success"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   OPEN SURPRISE
+========================================================= */
+
+$("openLinkBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      const link =
+        $("shareLink")
+          .value;
+
+      if(link){
+
+        window.location.href =
+          link;
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   LOAD SHARED LINK
+========================================================= */
+
+async function startApp(){
+
+  /*
+    URL example:
+
+    index.html
+
+    = CREATE PAGE
+
+
+    index.html?id=abc123
+
+    = SURPRISE PAGE
+  */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const id =
+    params.get("id");
+
+
+  /*
+    -----------------------------------------------
+    NO ID
+    -----------------------------------------------
+
+    Means creator is opening website normally.
+
+    SHOW CREATE PAGE.
+  */
+
+  if(!id){
+
+    $("loadingScreen")
+      .classList
+      .remove("active");
+
+    show("setup");
+
+    return;
+
+  }
+
+
+  /*
+    -----------------------------------------------
+    ID EXISTS
+    -----------------------------------------------
+
+    Means someone opened shared birthday link.
+
+    NEVER SHOW CREATE PAGE.
+  */
+
+  try{
+
+    show(
+      "loadingScreen"
+    );
+
+
+    setStatus("");
+
+
+    /*
+      Load data from Supabase
+    */
+
+    data =
+      await loadSurprise(
         id
       );
 
 
-      $("shareLink").value =
-        shareLink.toString();
+    /*
+      Validate data
+    */
 
+    if(
+      !data ||
+      !data.name
+    ){
 
-      $("shareBox")
-        .classList
-        .remove("hidden");
-
-
-      setStatus(
-        "🎉 Done! Your private surprise link is ready.",
-        "success"
-      );
-
-
-    }catch(error){
-
-      console.error(error);
-
-
-      setStatus(
-        error.message ||
-        "Something went wrong.",
-        "error"
-      );
-
-
-    }finally{
-
-      button.disabled =
-        false;
-
-    }
-
-  }
-);
-
-
-/* ==================================================
-   COPY LINK
-================================================== */
-
-$("copyLinkBtn").addEventListener(
-  "click",
-  async () => {
-
-    const link =
-      $("shareLink").value;
-
-
-    try{
-
-      await navigator.clipboard
-        .writeText(link);
-
-
-      setStatus(
-        "📋 Link copied! Send it to the birthday person.",
-        "success"
-      );
-
-
-    }catch{
-
-      $("shareLink").select();
-
-      document.execCommand("copy");
-
-      setStatus(
-        "📋 Link copied!",
-        "success"
+      throw new Error(
+        "Invalid birthday surprise."
       );
 
     }
 
-  }
-);
+
+    /*
+      Put data into surprise
+    */
+
+    renderData();
 
 
-/* ==================================================
-   OPEN GENERATED LINK
-================================================== */
+    /*
+      IMPORTANT:
 
-$("openLinkBtn").addEventListener(
-  "click",
-  () => {
+      Shared link ALWAYS
+      opens the surprise opening screen.
+    */
 
-    const link =
-      $("shareLink").value;
-
-
-    if(link){
-
-      window.location.href =
-        link;
-
-    }
-
-  }
-);
+    show(
+      "opening"
+    );
 
 
-/* ==================================================
-   RENDER DATA
-================================================== */
+  }catch(error){
 
-function renderData(){
-
-  $("introName").textContent =
-    data.name || "Friend";
-
-  $("messageName").textContent =
-    data.name || "Friend";
-
-  $("senderName").textContent =
-    data.sender || "Someone";
-
-  $("finalName").textContent =
-    data.name || "Friend";
-
-  $("finalName2").textContent =
-    data.name || "Friend";
-
-  $("finalSender").textContent =
-    data.sender || "Someone";
+    console.error(error);
 
 
-  if(data.music){
+    $("errorText")
+      .textContent =
+      error.message ||
+      "This surprise could not be loaded.";
 
-    $("music").src =
-      data.music;
+
+    show(
+      "errorScreen"
+    );
 
   }
 
 }
 
 
-/* ==================================================
+/* =========================================================
+   RENDER DATA
+========================================================= */
+
+function renderData(){
+
+  const name =
+    data.name ||
+    "Beautiful";
+
+  const sender =
+    data.sender ||
+    "Someone";
+
+
+  $("introName")
+    .textContent =
+    name;
+
+
+  $("messageName")
+    .textContent =
+    name;
+
+
+  $("senderName")
+    .textContent =
+    sender;
+
+
+  $("finalName")
+    .textContent =
+    name;
+
+
+  $("finalName2")
+    .textContent =
+    name;
+
+
+  $("finalSender")
+    .textContent =
+    sender;
+
+
+  /*
+    MUSIC
+  */
+
+  if(data.music){
+
+    $("music").src =
+      data.music;
+
+    $("music")
+      .style
+      .display =
+      "block";
+
+  }else{
+
+    $("music")
+      .removeAttribute(
+        "src"
+      );
+
+    $("music")
+      .style
+      .display =
+      "none";
+
+  }
+
+}
+
+
+/* =========================================================
    OPEN SURPRISE
-================================================== */
+========================================================= */
 
-$("openBtn").addEventListener(
-  "click",
-  () => {
+$("openBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-    show("intro");
+      show(
+        "intro"
+      );
 
-  }
-);
+    }
+  );
 
 
-/* ==================================================
+/* =========================================================
    START MEMORY
-================================================== */
+========================================================= */
 
-$("memoryStart").addEventListener(
-  "click",
-  () => {
+$("memoryStart")
+  .addEventListener(
+    "click",
+    () => {
 
-    currentMemory = 0;
+      currentMemory = 0;
 
-    renderMemory();
-
-    show("memory");
-
-  }
-);
+      const memories =
+        data.memories || [];
 
 
-/* ==================================================
+      /*
+        No photos?
+
+        Directly go to cake.
+      */
+
+      if(!memories.length){
+
+        show(
+          "cakeScreen"
+        );
+
+        return;
+
+      }
+
+
+      renderMemory();
+
+      show(
+        "memory"
+      );
+
+    }
+  );
+
+
+/* =========================================================
    RENDER MEMORY
-================================================== */
+========================================================= */
 
 function renderMemory(){
 
-  const list =
-    Array.isArray(data.memories)
-      ? data.memories
-      : [];
+  const memories =
+    data.memories || [];
 
 
-  if(list.length === 0){
+  if(!memories.length){
 
-    show("cakeScreen");
+    show(
+      "cakeScreen"
+    );
 
     return;
 
@@ -2221,128 +2807,164 @@ function renderMemory(){
 
 
   const memory =
-    list[currentMemory];
+    memories[
+      currentMemory
+    ];
 
 
-  $("memoryCount").textContent =
+  $("memoryCount")
+    .textContent =
+
     "MEMORY " +
+
     (currentMemory + 1) +
+
     " OF " +
-    list.length;
+
+    memories.length;
 
 
-  $("memoryImage").src =
+  $("memoryImage")
+    .src =
     memory.image;
 
 
-  $("memoryImage").onerror =
-    () => {
+  $("photoCaption")
+    .textContent =
 
-      $("photoCaption").textContent =
-        "This photo could not be loaded.";
-
-    };
-
-
-  $("photoCaption").textContent =
     memory.caption ||
+
     "A beautiful memory worth keeping forever. ❤️";
 
 
-  $("dots").innerHTML =
-    list
+  /*
+    DOTS
+  */
+
+  $("dots")
+    .innerHTML =
+
+    memories
       .map(
         (_,index) =>
-          `
-          <span
-            class="dot ${
-              index === currentMemory
-                ? "active"
-                : ""
-            }"
-          ></span>
-          `
+
+          `<span class="dot ${
+            index === currentMemory
+            ? "active"
+            : ""
+          }"></span>`
+
       )
       .join("");
 
 
+  /*
+    TYPING
+  */
+
   typeText(
+
     $("typedText"),
+
     memory.caption ||
-    "Every memory becomes more beautiful when it is remembered. ❤️"
+
+    "Every memory becomes more beautiful when it is remembered forever. ❤️",
+
+    28
+
   );
 
 
-  $("prevMemory").style.visibility =
+  /*
+    PREVIOUS
+  */
+
+  $("prevMemory")
+    .style
+    .visibility =
+
     currentMemory === 0
       ? "hidden"
       : "visible";
 
 
-  $("nextMemory").textContent =
-    currentMemory === list.length - 1
+  /*
+    NEXT BUTTON
+  */
+
+  $("nextMemory")
+    .textContent =
+
+    currentMemory ===
+    memories.length - 1
+
       ? "Continue ❤️"
+
       : "Next Memory ❤️";
 
 }
 
 
-/* ==================================================
+/* =========================================================
    PREVIOUS MEMORY
-================================================== */
+========================================================= */
 
-$("prevMemory").addEventListener(
-  "click",
-  () => {
+$("prevMemory")
+  .addEventListener(
+    "click",
+    () => {
 
-    if(currentMemory > 0){
+      if(
+        currentMemory > 0
+      ){
 
-      currentMemory--;
+        currentMemory--;
 
-      renderMemory();
+        renderMemory();
+
+      }
 
     }
-
-  }
-);
+  );
 
 
-/* ==================================================
+/* =========================================================
    NEXT MEMORY
-================================================== */
+========================================================= */
 
-$("nextMemory").addEventListener(
-  "click",
-  () => {
+$("nextMemory")
+  .addEventListener(
+    "click",
+    () => {
 
-    const total =
-      Array.isArray(data.memories)
-        ? data.memories.length
-        : 0;
+      const memories =
+        data.memories || [];
 
 
-    if(
-      currentMemory <
-      total - 1
-    ){
+      if(
+        currentMemory <
+        memories.length - 1
+      ){
 
-      currentMemory++;
+        currentMemory++;
 
-      renderMemory();
+        renderMemory();
 
-    }else{
+      }else{
 
-      show("cakeScreen");
+        show(
+          "cakeScreen"
+        );
+
+      }
 
     }
-
-  }
-);
+  );
 
 
-/* ==================================================
+/* =========================================================
    CANDLE CLICK
-================================================== */
+========================================================= */
 
 document
   .querySelectorAll(".candle")
@@ -2353,9 +2975,9 @@ document
         "click",
         () => {
 
-          candle.classList.toggle(
-            "off"
-          );
+          candle
+            .classList
+            .toggle("off");
 
         }
       );
@@ -2364,230 +2986,978 @@ document
   );
 
 
-/* ==================================================
+/* =========================================================
    BLOW CANDLES
-================================================== */
+========================================================= */
 
-$("blowBtn").addEventListener(
-  "click",
-  () => {
+$("blowBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-    document
-      .querySelectorAll(".candle")
-      .forEach(
-        candle =>
-          candle.classList.add("off")
-      );
+      document
+        .querySelectorAll(".candle")
+        .forEach(
+          candle => {
 
+            candle
+              .classList
+              .add("off");
 
-    celebrate();
-
-
-    setTimeout(
-      () => {
-
-        show(
-          "messageScreen"
+          }
         );
 
 
-        typeText(
-          $("finalTyped"),
-          data.finalMessage ||
-          "",
-          22
-        );
-
-      },
-      700
-    );
-
-  }
-);
+      celebrate();
 
 
-/* ==================================================
-   FINAL MESSAGE
-================================================== */
+      setTimeout(
+        () => {
 
-$("finalBtn").addEventListener(
-  "click",
-  () => {
-
-    renderFinal();
-
-    show("finalScreen");
-
-    celebrate();
-
-  }
-);
+          show(
+            "messageScreen"
+          );
 
 
-/* ==================================================
-   RENDER FINAL
-================================================== */
+          typeText(
 
-function renderFinal(){
+            $("finalTyped"),
 
-  $("finalMessageShow").textContent =
-    data.finalMessage ||
-    "Happy Birthday! ❤️";
+            data.finalMessage ||
 
+            "Happy Birthday! ❤️",
 
-  const memories =
-    Array.isArray(data.memories)
-      ? data.memories
-      : [];
+            22
 
+          );
 
-  $("finalPhotos").innerHTML =
-    memories
-      .map(
-        memory =>
-          `
-          <img
-            src="${escapeHtml(memory.image)}"
-            alt="Memory"
-            loading="lazy"
-          >
-          `
-      )
-      .join("");
-
-}
-
-
-/* ==================================================
-   SAFE HTML
-================================================== */
-
-function escapeHtml(value){
-
-  return String(value || "")
-    .replace(
-      /[&<>"']/g,
-      char =>
-        ({
-          "&":"&amp;",
-          "<":"&lt;",
-          ">":"&gt;",
-          '"':"&quot;",
-          "'":"&#039;"
-        }[char])
-    );
-
-}
-
-
-/* ==================================================
-   CELEBRATE AGAIN
-================================================== */
-
-$("fireBtn").addEventListener(
-  "click",
-  celebrate
-);
-
-
-/* ==================================================
-   CREATE ANOTHER
-================================================== */
-
-$("restartBtn").addEventListener(
-  "click",
-  () => {
-
-    /*
-      Remove ?id=xxxx completely.
-      Then reload Create Page.
-    */
-
-    const cleanUrl =
-      location.origin +
-      location.pathname;
-
-    window.location.href =
-      cleanUrl;
-
-  }
-);
-
-
-/* ==================================================
-   MUSIC
-================================================== */
-
-$("musicBtn").addEventListener(
-  "click",
-  async () => {
-
-    const audio =
-      $("music");
-
-
-    if(!audio.src){
-
-      alert(
-        "No music was added to this surprise."
+        },
+        900
       );
-
-      return;
 
     }
+  );
 
 
-    try{
+/* =========================================================
+   FINAL BUTTON
+========================================================= */
 
-      if(audio.paused){
+$("finalBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-        await audio.play();
+      renderFinal();
 
-        $("musicBtn").textContent =
-          "🎵 Music ON";
+      show(
+        "finalScreen"
+      );
 
-        $("musicBtn")
-          .classList
-          .add("playing");
+      celebrate();
+
+    }
+  );<script>
+
+/* =========================================================
+   BIRTHDAY MAGIC — PART 2
+   DATABASE + STORAGE + SHARE LINK + EXPERIENCE
+========================================================= */
 
 
-      }else{
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
 
-        audio.pause();
+const SUPABASE_URL =
+  "https://mlwfuysdbqzgwfgzqwd.supabase.co";
 
-        $("musicBtn").textContent =
-          "🎵 Music OFF";
+const SUPABASE_ANON_KEY =
+  "sb_publishable_lloRqy5KDRMkrkVBasR_VA_L5BLtqW4";
 
-        $("musicBtn")
-          .classList
-          .remove("playing");
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+let data = {
+  name:"",
+  sender:"",
+  relation:"",
+  finalMessage:"",
+  memories:[],
+  music:""
+};
+
+let currentMemory = 0;
+let typingTimer = null;
+
+
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
+
+function show(id){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
+
+  const target = $(id);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(text,type=""){
+
+  const el = $("status");
+
+  if(!el)return;
+
+  el.textContent = text;
+
+  el.className =
+    "status " +
+    type;
+}
+
+
+/* =========================================================
+   TYPING EFFECT
+========================================================= */
+
+function typeText(
+  element,
+  text,
+  speed=28
+){
+
+  clearInterval(typingTimer);
+
+  element.textContent = "";
+
+  let i = 0;
+
+  typingTimer =
+    setInterval(() => {
+
+      element.textContent +=
+        text.charAt(i);
+
+      i++;
+
+      if(i >= text.length){
+
+        clearInterval(
+          typingTimer
+        );
+
+      }
+
+    },speed);
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+for(let i=0;i<100;i++){
+
+  const star =
+    document.createElement("div");
+
+  star.className = "star";
+
+  star.style.left =
+    Math.random()*100 + "%";
+
+  star.style.top =
+    Math.random()*100 + "%";
+
+  star.style.animationDelay =
+    Math.random()*2.5 + "s";
+
+  $("stars").appendChild(star);
+}
+
+
+/* =========================================================
+   MEMORY FORM
+========================================================= */
+
+const memoriesForm =
+  $("memoriesForm");
+
+for(let i=1;i<=3;i++){
+
+  memoriesForm.insertAdjacentHTML(
+    "beforeend",
+
+`
+<div class="memory-card">
+
+  <div class="memory-title">
+    💞 Memory ${i}
+  </div>
+
+  <div class="group">
+
+    <label>
+      📸 Photo
+    </label>
+
+    <div class="filebox">
+
+      <input
+        id="file${i}"
+        type="file"
+        accept="image/*"
+      >
+
+      <div
+        id="fileName${i}"
+        class="file-name"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="group">
+
+    <label>
+      🌐 Or Public Image URL
+    </label>
+
+    <input
+      id="url${i}"
+      type="url"
+      placeholder="https://example.com/photo.jpg"
+    >
+
+  </div>
+
+
+  <div class="group">
+
+    <label>
+      💌 Message for Memory ${i}
+    </label>
+
+    <textarea
+      id="caption${i}"
+      placeholder="Write something special about this memory..."
+    ></textarea>
+
+  </div>
+
+</div>
+`
+  );
+
+
+  $("file"+i)
+    .addEventListener(
+      "change",
+      event => {
+
+        const file =
+          event.target.files[0];
+
+        $("fileName"+i)
+          .textContent =
+          file
+          ? "Selected: " + file.name
+          : "";
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   MUSIC FILE NAME
+========================================================= */
+
+$("musicFile")
+  .addEventListener(
+    "change",
+    event => {
+
+      const file =
+        event.target.files[0];
+
+      $("musicFileName")
+        .textContent =
+        file
+        ? "Selected: " + file.name
+        : "";
+
+    }
+  );
+
+
+/* =========================================================
+   SUPABASE HEADERS
+========================================================= */
+
+const supabaseHeaders = {
+
+  apikey:
+    SUPABASE_ANON_KEY,
+
+  Authorization:
+    "Bearer " +
+    SUPABASE_ANON_KEY
+
+};
+
+
+/* =========================================================
+   UPLOAD FILE
+========================================================= */
+
+async function uploadFile(
+  file,
+  folder
+){
+
+  if(!file){
+    throw new Error(
+      "No file selected."
+    );
+  }
+
+
+  const cleanName =
+    file.name
+      .replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+      );
+
+
+  const path =
+    folder +
+    "/" +
+    crypto.randomUUID() +
+    "_" +
+    cleanName;
+
+
+  const response =
+    await fetch(
+
+      SUPABASE_URL +
+      "/storage/v1/object/birthday-media/" +
+      path,
+
+      {
+        method:"POST",
+
+        headers:{
+          ...supabaseHeaders,
+
+          "Content-Type":
+            file.type ||
+            "application/octet-stream",
+
+          "x-upsert":
+            "true"
+        },
+
+        body:file
+      }
+
+    );
+
+
+  if(!response.ok){
+
+    const error =
+      await response.text();
+
+    throw new Error(
+      "File upload failed: " +
+      error
+    );
+
+  }
+
+
+  return (
+
+    SUPABASE_URL +
+
+    "/storage/v1/object/public/birthday-media/" +
+
+    path
+
+  );
+
+}
+
+
+/* =========================================================
+   SAVE SURPRISE
+========================================================= */
+
+async function saveSurprise(
+  id,
+  payload
+){
+
+  const response =
+    await fetch(
+
+      SUPABASE_URL +
+      "/rest/v1/birthday_surprises",
+
+      {
+
+        method:"POST",
+
+        headers:{
+
+          ...supabaseHeaders,
+
+          "Content-Type":
+            "application/json",
+
+          "Prefer":
+            "return=representation"
+
+        },
+
+        body:
+          JSON.stringify({
+
+            id:id,
+
+            payload:payload
+
+          })
+
+      }
+
+    );
+
+
+  if(!response.ok){
+
+    const error =
+      await response.text();
+
+    throw new Error(
+      "Database save failed: " +
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD SURPRISE
+========================================================= */
+
+async function loadSurprise(id){
+
+  const response =
+    await fetch(
+
+      SUPABASE_URL +
+
+      "/rest/v1/birthday_surprises" +
+
+      "?id=eq." +
+
+      encodeURIComponent(id) +
+
+      "&select=payload&limit=1",
+
+      {
+        method:"GET",
+
+        headers:
+          supabaseHeaders
+      }
+
+    );
+
+
+  if(!response.ok){
+
+    const error =
+      await response.text();
+
+    throw new Error(
+      "Database read failed: " +
+      error
+    );
+
+  }
+
+
+  const rows =
+    await response.json();
+
+
+  if(
+    !rows ||
+    !rows.length
+  ){
+
+    throw new Error(
+      "This birthday surprise does not exist."
+    );
+
+  }
+
+
+  return rows[0].payload;
+
+}
+
+
+/* =========================================================
+   CREATE SHARE LINK
+========================================================= */
+
+function createShareLink(id){
+
+  /*
+    IMPORTANT:
+
+    Ye current website ka URL leta hai.
+
+    Example:
+
+    https://yourusername.github.io/birthday/
+
+    uske baad:
+
+    ?id=xxxxxxxx
+
+    Result:
+
+    https://yourusername.github.io/birthday/?id=xxxxxxxx
+  */
+
+  const url =
+    new URL(
+      location.href
+    );
+
+  url.search = "";
+
+  url.hash = "";
+
+  url.searchParams.set(
+    "id",
+    id
+  );
+
+  return url.toString();
+
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+$("createBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        $("name")
+          .value
+          .trim();
+
+
+      if(!name){
+
+        setStatus(
+          "Please enter the birthday person's name.",
+          "error"
+        );
+
+        $("name").focus();
+
+        return;
 
       }
 
 
-    }catch(error){
+      const button =
+        $("createBtn");
 
-      console.error(error);
+      button.disabled = true;
 
-      alert(
-        "Tap the music button again to allow audio playback."
-      );
+
+      try{
+
+        setStatus(
+          "Preparing your birthday surprise..."
+        );
+
+
+        /* -----------------------------------------------
+           MEMORIES
+        ------------------------------------------------ */
+
+        const memories = [];
+
+
+        for(
+          let i=1;
+          i<=3;
+          i++
+        ){
+
+          const file =
+            $("file"+i)
+              .files[0];
+
+
+          const imageURL =
+            $("url"+i)
+              .value
+              .trim();
+
+
+          const caption =
+            $("caption"+i)
+              .value
+              .trim();
+
+
+          /*
+             If neither image nor URL exists,
+             skip this memory.
+          */
+
+          if(
+            !file &&
+            !imageURL
+          ){
+
+            continue;
+
+          }
+
+
+          let finalImageURL =
+            imageURL;
+
+
+          /*
+             PHONE PHOTO
+             ↓
+             SUPABASE STORAGE
+          */
+
+          if(file){
+
+            setStatus(
+              "Uploading Memory " +
+              i +
+              "..."
+            );
+
+
+            finalImageURL =
+              await uploadFile(
+                file,
+                "images"
+              );
+
+          }
+
+
+          memories.push({
+
+            image:
+              finalImageURL,
+
+            caption:
+              caption
+
+          });
+
+        }
+
+
+        /* -----------------------------------------------
+           MUSIC
+        ------------------------------------------------ */
+
+        let music =
+          $("musicUrl")
+            .value
+            .trim();
+
+
+        const musicFile =
+          $("musicFile")
+            .files[0];
+
+
+        if(musicFile){
+
+          setStatus(
+            "Uploading birthday music..."
+          );
+
+
+          music =
+            await uploadFile(
+              musicFile,
+              "music"
+            );
+
+        }
+
+
+        /* -----------------------------------------------
+           PAYLOAD
+        ------------------------------------------------ */
+
+        const payload = {
+
+          name:name,
+
+          sender:
+            $("sender")
+              .value
+              .trim(),
+
+          relation:
+            $("relation")
+              .value
+              .trim(),
+
+          finalMessage:
+
+            $("finalMessage")
+              .value
+              .trim()
+
+            ||
+
+            "Wishing you a beautiful birthday filled with happiness, love and wonderful memories. ❤️",
+
+          memories:
+
+            memories,
+
+          music:
+
+            music
+
+        };
+
+
+        /* -----------------------------------------------
+           UNIQUE ID
+        ------------------------------------------------ */
+
+        const id =
+          crypto.randomUUID();
+
+
+        setStatus(
+          "Saving your birthday surprise..."
+        );
+
+
+        await saveSurprise(
+          id,
+          payload
+        );
+
+
+        /* -----------------------------------------------
+           SHARE LINK
+        ------------------------------------------------ */
+
+        const shareLink =
+          createShareLink(
+            id
+          );
+
+
+        $("shareLink")
+          .value =
+          shareLink;
+
+
+        $("shareBox")
+          .classList
+          .remove("hidden");
+
+
+        setStatus(
+          "🎉 Your birthday surprise link is ready!",
+          "success"
+        );
+
+
+        /*
+          Scroll to link
+        */
+
+        setTimeout(
+          () => {
+
+            $("shareBox")
+              .scrollIntoView({
+                behavior:"smooth",
+                block:"center"
+              });
+
+          },
+          200
+        );
+
+
+      }catch(error){
+
+        console.error(error);
+
+        setStatus(
+
+          error.message ||
+
+          "Something went wrong. Please check Supabase settings.",
+
+          "error"
+
+        );
+
+      }finally{
+
+        button.disabled = false;
+
+      }
 
     }
-
-  }
-);
+  );
 
 
-/* ==================================================
-   VERY IMPORTANT:
-   CREATE MODE vs SURPRISE MODE
-================================================== */
+/* =========================================================
+   COPY LINK
+========================================================= */
 
-async function startApplication(){
+$("copyLinkBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const link =
+        $("shareLink")
+          .value;
+
+
+      if(!link)return;
+
+
+      try{
+
+        await navigator.clipboard
+          .writeText(link);
+
+
+        setStatus(
+          "📋 Link copied! Now send it to the birthday person.",
+          "success"
+        );
+
+
+      }catch{
+
+        $("shareLink")
+          .select();
+
+        document
+          .execCommand("copy");
+
+
+        setStatus(
+          "📋 Link copied!",
+          "success"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   OPEN SURPRISE
+========================================================= */
+
+$("openLinkBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      const link =
+        $("shareLink")
+          .value;
+
+      if(link){
+
+        window.location.href =
+          link;
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   LOAD SHARED LINK
+========================================================= */
+
+async function startApp(){
 
   /*
-    Read ?id= BEFORE showing Create Page.
+    URL example:
+
+    index.html
+
+    = CREATE PAGE
+
+
+    index.html?id=abc123
+
+    = SURPRISE PAGE
   */
 
   const params =
@@ -2596,22 +3966,25 @@ async function startApplication(){
     );
 
 
-  const surpriseId =
+  const id =
     params.get("id");
 
 
   /*
-    ==========================================
+    -----------------------------------------------
     NO ID
-    ==========================================
-    Normal creator page.
+    -----------------------------------------------
+
+    Means creator is opening website normally.
+
+    SHOW CREATE PAGE.
   */
 
-  if(!surpriseId){
+  if(!id){
 
     $("loadingScreen")
       .classList
-      .remove("show");
+      .remove("active");
 
     show("setup");
 
@@ -2621,45 +3994,38 @@ async function startApplication(){
 
 
   /*
-    ==========================================
-    HAS ID
-    ==========================================
-    NEVER show Create Page.
+    -----------------------------------------------
+    ID EXISTS
+    -----------------------------------------------
+
+    Means someone opened shared birthday link.
+
+    NEVER SHOW CREATE PAGE.
   */
-
-  $("loadingText").textContent =
-    "Loading your birthday surprise...";
-
-
-  $("loadingScreen")
-    .classList
-    .add("show");
-
-
-  /*
-    Hide every screen immediately.
-  */
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(
-      screen =>
-        screen.classList.remove("active")
-    );
-
 
   try{
 
+    show(
+      "loadingScreen"
+    );
+
+
+    setStatus("");
+
+
     /*
-      Load saved birthday data
-      from Supabase.
+      Load data from Supabase
     */
 
     data =
       await loadSurprise(
-        surpriseId
+        id
       );
 
+
+    /*
+      Validate data
+    */
 
     if(
       !data ||
@@ -2667,64 +4033,462 @@ async function startApplication(){
     ){
 
       throw new Error(
-        "This surprise data is invalid."
+        "Invalid birthday surprise."
       );
 
     }
 
+
+    /*
+      Put data into surprise
+    */
 
     renderData();
 
 
     /*
       IMPORTANT:
-      The receiver sees ONLY opening.
+
+      Shared link ALWAYS
+      opens the surprise opening screen.
     */
 
-    $("loadingScreen")
-      .classList
-      .remove("show");
-
-
-    show("opening");
+    show(
+      "opening"
+    );
 
 
   }catch(error){
 
-    console.error(
-      "SURPRISE LOAD ERROR:",
-      error
+    console.error(error);
+
+
+    $("errorText")
+      .textContent =
+      error.message ||
+      "This surprise could not be loaded.";
+
+
+    show(
+      "errorScreen"
     );
-
-
-    /*
-      Do NOT send receiver to Create Page.
-      Show an error instead.
-    */
-
-    $("loadingText").innerHTML =
-      `
-      <span style="color:#ff8c9e">
-        😔 This birthday surprise could not be opened.
-      </span>
-      <br><br>
-      ${escapeHtml(error.message)}
-      <br><br>
-      Please check the link or Supabase settings.
-      `;
 
   }
 
 }
 
 
-/* ==================================================
-   START APP
-================================================== */
+/* =========================================================
+   RENDER DATA
+========================================================= */
 
-startApplication();
+function renderData(){
 
-</script>
+  const name =
+    data.name ||
+    "Beautiful";
 
-</body>
-</html>
+  const sender =
+    data.sender ||
+    "Someone";
+
+
+  $("introName")
+    .textContent =
+    name;
+
+
+  $("messageName")
+    .textContent =
+    name;
+
+
+  $("senderName")
+    .textContent =
+    sender;
+
+
+  $("finalName")
+    .textContent =
+    name;
+
+
+  $("finalName2")
+    .textContent =
+    name;
+
+
+  $("finalSender")
+    .textContent =
+    sender;
+
+
+  /*
+    MUSIC
+  */
+
+  if(data.music){
+
+    $("music").src =
+      data.music;
+
+    $("music")
+      .style
+      .display =
+      "block";
+
+  }else{
+
+    $("music")
+      .removeAttribute(
+        "src"
+      );
+
+    $("music")
+      .style
+      .display =
+      "none";
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN SURPRISE
+========================================================= */
+
+$("openBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      show(
+        "intro"
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   START MEMORY
+========================================================= */
+
+$("memoryStart")
+  .addEventListener(
+    "click",
+    () => {
+
+      currentMemory = 0;
+
+      const memories =
+        data.memories || [];
+
+
+      /*
+        No photos?
+
+        Directly go to cake.
+      */
+
+      if(!memories.length){
+
+        show(
+          "cakeScreen"
+        );
+
+        return;
+
+      }
+
+
+      renderMemory();
+
+      show(
+        "memory"
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   RENDER MEMORY
+========================================================= */
+
+function renderMemory(){
+
+  const memories =
+    data.memories || [];
+
+
+  if(!memories.length){
+
+    show(
+      "cakeScreen"
+    );
+
+    return;
+
+  }
+
+
+  const memory =
+    memories[
+      currentMemory
+    ];
+
+
+  $("memoryCount")
+    .textContent =
+
+    "MEMORY " +
+
+    (currentMemory + 1) +
+
+    " OF " +
+
+    memories.length;
+
+
+  $("memoryImage")
+    .src =
+    memory.image;
+
+
+  $("photoCaption")
+    .textContent =
+
+    memory.caption ||
+
+    "A beautiful memory worth keeping forever. ❤️";
+
+
+  /*
+    DOTS
+  */
+
+  $("dots")
+    .innerHTML =
+
+    memories
+      .map(
+        (_,index) =>
+
+          `<span class="dot ${
+            index === currentMemory
+            ? "active"
+            : ""
+          }"></span>`
+
+      )
+      .join("");
+
+
+  /*
+    TYPING
+  */
+
+  typeText(
+
+    $("typedText"),
+
+    memory.caption ||
+
+    "Every memory becomes more beautiful when it is remembered forever. ❤️",
+
+    28
+
+  );
+
+
+  /*
+    PREVIOUS
+  */
+
+  $("prevMemory")
+    .style
+    .visibility =
+
+    currentMemory === 0
+      ? "hidden"
+      : "visible";
+
+
+  /*
+    NEXT BUTTON
+  */
+
+  $("nextMemory")
+    .textContent =
+
+    currentMemory ===
+    memories.length - 1
+
+      ? "Continue ❤️"
+
+      : "Next Memory ❤️";
+
+}
+
+
+/* =========================================================
+   PREVIOUS MEMORY
+========================================================= */
+
+$("prevMemory")
+  .addEventListener(
+    "click",
+    () => {
+
+      if(
+        currentMemory > 0
+      ){
+
+        currentMemory--;
+
+        renderMemory();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   NEXT MEMORY
+========================================================= */
+
+$("nextMemory")
+  .addEventListener(
+    "click",
+    () => {
+
+      const memories =
+        data.memories || [];
+
+
+      if(
+        currentMemory <
+        memories.length - 1
+      ){
+
+        currentMemory++;
+
+        renderMemory();
+
+      }else{
+
+        show(
+          "cakeScreen"
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   CANDLE CLICK
+========================================================= */
+
+document
+  .querySelectorAll(".candle")
+  .forEach(
+    candle => {
+
+      candle.addEventListener(
+        "click",
+        () => {
+
+          candle
+            .classList
+            .toggle("off");
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   BLOW CANDLES
+========================================================= */
+
+$("blowBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      document
+        .querySelectorAll(".candle")
+        .forEach(
+          candle => {
+
+            candle
+              .classList
+              .add("off");
+
+          }
+        );
+
+
+      celebrate();
+
+
+      setTimeout(
+        () => {
+
+          show(
+            "messageScreen"
+          );
+
+
+          typeText(
+
+            $("finalTyped"),
+
+            data.finalMessage ||
+
+            "Happy Birthday! ❤️",
+
+            22
+
+          );
+
+        },
+        900
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   FINAL BUTTON
+========================================================= */
+
+$("finalBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      renderFinal();
+
+      show(
+        "finalScreen"
+      );
+
+      celebrate();
+
+    }
+  );
+
+
+/* ==============
+
+
+/* ==============
