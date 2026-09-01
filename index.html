@@ -1,52 +1,242 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Birthday Magic 🎂</title><style>
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#08030f,#25082f);color:#fff;font-family:Arial,sans-serif;min-height:100vh}.box{max-width:650px;margin:30px auto;padding:22px;background:#16091f;border:1px solid #63335f;border-radius:25px}h1{text-align:center;color:#ffd36a}.g{margin:14px 0}label{display:block;margin-bottom:7px;color:#ffddea;font-weight:bold}input,textarea,button{width:100%;padding:14px;border-radius:14px;border:1px solid #654466;background:#08030d;color:#fff;font-size:16px}textarea{min-height:100px}button{background:linear-gradient(90deg,#ff9f1c,#ff4f9a);border:0;font-weight:bold;margin-top:10px}.mem{padding:15px;margin:15px 0;border:1px solid #56345c;border-radius:18px}.mem h2{color:#ffd36a;font-size:20px}.hide{display:none}.pic{width:100%;max-height:430px;object-fit:contain;border-radius:18px;margin:15px 0}.msg{background:#0a0410;padding:18px;border-radius:18px;line-height:1.7;white-space:pre-wrap}.link{font-size:12px}.gold{color:#ffd36a;text-align:center}.nav{display:flex;gap:10px}.nav button{width:50%}</style></head><body>
-<div id="app"></div><script>
-const A=document.getElementById("app");
-const enc=s=>btoa(unescape(encodeURIComponent(JSON.stringify(s))))
-  .replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For MEGHA ❤️</title>
 
-const dec=s=>{
-  s=s.replace(/-/g,"+").replace(/_/g,"/");
-  while(s.length%4)s+="=";
-  return JSON.parse(decodeURIComponent(escape(atob(s))));
-};
-
-function page(x){A.innerHTML=x}
-function setup(){
-page(`<div class="box"><h1>🎂 Birthday Magic</h1>
-<div class="g"><label>Birthday Person *</label><input id="n" placeholder="e.g. Megha"></div>
-<div class="g"><label>Your Name</label><input id="s" placeholder="e.g. Devraj"></div>
-<div class="g"><label>Relation</label><input id="r" placeholder="e.g. Friend"></div>
-<div class="g"><label>Birthday Message</label><textarea id="fm" placeholder="Write your special birthday message..."></textarea></div>
-<div id="ms"></div><button onclick="create()">✨ CREATE SURPRISE</button><p id="st" class="gold"></p><div id="share"></div></div>`);
-let m="";for(let i=1;i<=3;i++)m+=`<div class="mem"><h2>📸 Memory ${i}</h2><input id="f${i}" type="file" accept="image/*"><textarea id="c${i}" placeholder="Memory message (optional)"></textarea></div>`;document.getElementById("ms").innerHTML=m}
-function img(file){
-return new Promise((ok,no)=>{
-if(!file)return ok("");
-let q=new FileReader;q.onload=()=>{let im=new Image;im.onload=()=>{
-let w=Math.min(im.width,700),h=im.height*w/im.width,c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(im,0,0,w,h);ok(c.toDataURL("image/jpeg",.55))};im.src=q.result};q.onerror=no;q.readAsDataURL(file)})
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-async function create(){
-let n=document.getElementById("n").value.trim();if(!n){alert("Birthday Person ka naam do");return}
-document.getElementById("st").textContent="⏳ Creating...";
-let mem=[];for(let i=1;i<=3;i++){let f=document.getElementById("f"+i).files[0],c=document.getElementById("c"+i).value.trim();if(f)mem.push({i:await img(f),c:c})}
-let d={n:n,s:document.getElementById("s").value.trim()||"Someone",r:document.getElementById("r").value.trim(),f:document.getElementById("fm").value.trim()||"Wishing you a very Happy Birthday! ❤️",m:mem};
-let link=location.origin+location.pathname+"#"+enc(d);
-document.getElementById("st").textContent="✅ Surprise ready!";
-document.getElementById("share").innerHTML=`<div class="g"><input class="link" id="lnk" value="${link}" readonly></div><button onclick="navigator.clipboard.writeText(document.getElementById('lnk').value);alert('Link copied!')">📋 COPY LINK</button><button onclick="location.href=document.getElementById('lnk').value">💖 OPEN SURPRISE</button>`}
-let D;
-function open(){
-try{D=dec(location.hash.slice(1))}catch(e){setup();return}
-let i=0;
-function render(){
-if(i<D.m.length){
-let z=D.m[i];page(`<div class="box"><p class="gold">💖 MEMORY ${i+1} OF ${D.m.length}</p><h1>${D.n} ❤️</h1><img class="pic" src="${z.i}"><div class="msg">${z.c||"A beautiful memory to keep forever. ❤️"}</div><div class="nav"><button onclick="i--;render()">← Previous</button><button onclick="i++;render()">${i==D.m.length-1?"Continue ❤️":"Next ❤️"}</button></div></div>`)
-}else cake()}
-function cake(){page(`<div class="box"><h1>🎂 One Last Surprise ✨</h1><p class="gold">Make a wish, ${D.n}!</p><div style="font-size:100px;text-align:center">🎂</div><button onclick="final()">🕯️ BLOW OUT THE CANDLES</button></div>`)}
-window.final=()=>page(`<div class="box"><h1>🎉 Happy Birthday ${D.n}! ❤️</h1><p class="gold">From ${D.s} • ${D.r}</p><div class="msg">${D.f}</div>${D.m.map(x=>`<img class="pic" src="${x.i}">`).join("")}<button onclick="location.hash='';setup()">🔄 CREATE ANOTHER</button></div>`);
-window.render=render;render()}
-window.addEventListener("load",()=>{
-  if(location.hash && location.hash.length>1) open();
-  else setup();
-});
-</script></body></html>
+
+body{
+  min-height:100vh;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:
+    radial-gradient(circle at top,#42106b,#10051b 55%,#050207);
+}
+
+#app{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,80,170,.18),transparent 30%),
+    radial-gradient(circle at 85% 80%,rgba(120,70,255,.16),transparent 35%);
+}
+
+.card{
+  width:min(440px,100%);
+  min-height:570px;
+  padding:26px;
+  border-radius:30px;
+
+  background:rgba(20,8,30,.86);
+  border:1px solid rgba(255,255,255,.15);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.7),
+    inset 0 0 40px rgba(255,100,190,.04);
+
+  backdrop-filter:blur(18px);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+
+  animation:popup .55s ease;
+}
+
+@keyframes popup{
+  from{
+    opacity:0;
+    transform:scale(.75) translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1) translateY(0);
+  }
+}
+
+h1{
+  font-size:48px;
+  margin:14px 0;
+
+  background:linear-gradient(
+    90deg,
+    #ffd4e8,
+    #ffffff,
+    #ff77b7
+  );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+h2{
+  font-size:30px;
+  margin:12px 0 18px;
+}
+
+p{
+  color:#eadfeb;
+  line-height:1.7;
+  font-size:16px;
+}
+
+.small{
+  color:#b9a6c5;
+  font-size:13px;
+}
+
+.emoji{
+  font-size:70px;
+  animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-10px);
+  }
+}
+
+button{
+  margin-top:25px;
+  padding:14px 25px;
+
+  border:none;
+  border-radius:50px;
+
+  color:white;
+  background:
+    linear-gradient(135deg,#ff3f91,#8658ff);
+
+  font-size:16px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 12px 30px rgba(255,70,150,.25);
+
+  transition:.2s;
+}
+
+button:hover{
+  transform:translateY(-2px) scale(1.03);
+}
+
+button:active{
+  transform:scale(.94);
+}
+
+.photo{
+  width:100%;
+  height:350px;
+
+  object-fit:cover;
+
+  border-radius:22px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.65);
+
+  margin-bottom:18px;
+}
+
+.caption{
+  font-size:15px;
+  color:#f4d9e8;
+}
+
+.cake{
+  font-size:90px;
+  margin-bottom:5px;
+}
+
+.candles{
+  font-size:43px;
+  letter-spacing:7px;
+  margin:8px 0;
+}
+
+.progress{
+  position:fixed;
+  top:12px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:min(400px,80%);
+  height:4px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.12);
+
+  z-index:20;
+}
+
+.bar{
+  height:100%;
+  width:12%;
+  border-radius:10px;
+
+  background:
+    linear-gradient(90deg,#ff4297,#9670ff);
+
+  transition:.5s;
+}
+
+.hearts{
+  position:fixed;
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:10;
+}
+
+.heart{
+  position:absolute;
+  bottom:-40px;
+
+  animation:rise linear forwards;
+
+  opacity:.85;
+}
+
+@keyframes rise{
+  to{
+    transform:
+      translateY(-110vh)
+      rotate(360deg);
+
+    opacity:0;
+  }
+}
+
+.credit{
+  margin-top:22px;
+  color:#95849f;
+  font-size:12px;
+}
+
+#wish{
+  width:
